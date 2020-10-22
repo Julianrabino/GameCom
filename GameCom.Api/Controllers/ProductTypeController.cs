@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using GameCom.Api.DTOs;
+using GameCom.Model.Entities;
+using GameCom.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,32 +16,44 @@ namespace GameCom.Api.Controllers
     [Produces("application/json")]
     public class ProductTypeController : ControllerBase
     {
-        private readonly ILogger<ProductTypeController> _logger;
+        //private readonly ILogger<ProductTypeController> _logger;
 
-        private readonly IMapperSession _session;
+        //private readonly IMapperSession _session;
 
-        public ProductTypeController(ILogger<ProductTypeController> logger, IMapperSession session)
+        //public ProductTypeController(ILogger<ProductTypeController> logger, IMapperSession session)        
+        //{
+        //    _logger = logger;
+        //    _session = session;
+        //}
+
+        private readonly ProductTypeService service;
+        private readonly IMapper mapper;
+
+        public ProductTypeController(ProductTypeService service, IMapper mapper)
         {
-            _logger = logger;
-            _session = session;
+            this.service = service;
+            this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Permite recuperar todas las instancias
+        /// </summary>
+        /// <returns>Una colección de instancias</returns>
         [HttpGet]
-        public IEnumerable<ProductType> Get()
+        public ActionResult<IEnumerable<ProductTypeDTO>> Get()
         {
-            var list =_session.ProductTypes.ToList();
-            if (list.Any())
-            {
-                //var productType = new ProductType();
-                //productType.Initials = "P22";
-                //productType.Description = "prueba 2020";
-                var productType = _session.ProductTypes.Where(p => p.Id == 12).FirstOrDefault();
-                productType.Description = "prueba 2020 ED";
-                _session.BeginTransaction();
-                _session.Save(productType);
-                _session.Commit();
-            }
-            return list.ToList();
+            return this.mapper.Map<IEnumerable<ProductTypeDTO>>(this.service.GetAll()).ToList();
+        }
+
+        /// <summary>
+        /// Permite recuperar una instancia mediante un identificador
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a recuperar</param>
+        /// <returns>Una instancia</returns>
+        [HttpGet("{id}")]
+        public ActionResult<ProductTypeDTO> Get(int id)
+        {
+            return this.mapper.Map<ProductTypeDTO>(this.service.Get(id));
         }
     }
 }

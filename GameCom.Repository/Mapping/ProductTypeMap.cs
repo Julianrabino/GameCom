@@ -1,12 +1,8 @@
-﻿using NHibernate;
+﻿using GameCom.Model.Entities;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace GameCom.Api
+namespace GameCom.Repository.Mapping
 {
     public class ProductTypeMap: ClassMapping<ProductType>
     {

@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using GameCom.Api.Application;
+using GameCom.Repository.Repositories;
+using GameCom.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace GameCom.Api
 {
@@ -28,6 +25,10 @@ namespace GameCom.Api
             var connStr = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddNHibernate(connStr);
+            services.AddTransient<ProductTypeService>();
+            services.AddTransient<ProductTypeRepository>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
         }
@@ -39,6 +40,8 @@ namespace GameCom.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseExceptionMiddleware();
 
             app.UseHttpsRedirection();
 

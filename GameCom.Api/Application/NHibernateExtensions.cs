@@ -1,21 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GameCom.Repository.Mapping;
+using Microsoft.Extensions.DependencyInjection;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
-using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace GameCom.Api
+namespace GameCom.Api.Application
 {
     public static class NHibernateExtensions
     {
         public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
         {
             var mapper = new ModelMapper();
-            mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);
+            mapper.AddMappings(typeof(ProductTypeMap).Assembly.ExportedTypes);
             HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
 
             var configuration = new Configuration();
@@ -34,7 +30,7 @@ namespace GameCom.Api
 
             services.AddSingleton(sessionFactory);
             services.AddScoped(factory => sessionFactory.OpenSession());
-            services.AddScoped<IMapperSession, NHibernateMapperSession>();
+            //services.AddScoped<IMapperSession, NHibernateMapperSession>();
 
             return services;
         }

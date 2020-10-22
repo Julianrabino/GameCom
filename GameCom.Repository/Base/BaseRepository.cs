@@ -30,7 +30,7 @@ namespace GameCom.Repository.Base
 
         public void Delete(TEntity entity)
         {
-            this.DbSession.SaveOrUpdate(entity);
+            this.DbSession.Delete(entity);
         }
 
         public TEntity Save(TEntity entity)

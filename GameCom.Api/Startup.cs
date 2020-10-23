@@ -27,10 +27,17 @@ namespace GameCom.Api
             services.AddNHibernate(connStr);
             services.AddTransient<ProductTypeService>();
             services.AddTransient<ProductTypeRepository>();
-
+            
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddControllers();
+            services.AddControllers()
+                //Take the controller as a service
+                .AddControllersAsServices();
+
+            //services.ConfigureDynamicProxy(o =>
+            //{
+            //    //Add AOP configuration
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

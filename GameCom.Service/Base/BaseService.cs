@@ -1,12 +1,11 @@
-﻿using GameCom.Model.Base;
+﻿using GameCom.Common.Interceptors;
+using GameCom.Model.Base;
 using GameCom.Repository.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace GameCom.Service.Base
 {
-    public class BaseService<TEntity, TIdEntity>
+    public class BaseService<TEntity, TIdEntity>: IService<TEntity, TIdEntity>
         where TEntity : class, IEntity<TIdEntity>
     {
         protected IRepository<TEntity, TIdEntity> Repository { get; set; }
@@ -16,27 +15,32 @@ namespace GameCom.Service.Base
             this.Repository = repository;
         }
 
-        public TEntity Create(TEntity entity)
+        [TransactionInterceptor]
+        public virtual TEntity Create(TEntity entity)
         {
             return this.Repository.Save(entity);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        [TransactionInterceptor]
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return this.Repository.GetAll();
         }
 
-        public TEntity Get(TIdEntity id)
+        [TransactionInterceptor]
+        public virtual TEntity Get(TIdEntity id)
         {
             return this.Repository.Get(id);
         }
 
-        public void Delete(TEntity entity)
+        [TransactionInterceptor]
+        public virtual void Delete(TEntity entity)
         {
             this.Repository.Delete(entity);
         }
 
-        public TEntity Update(TEntity entity)
+        [TransactionInterceptor]
+        public virtual TEntity Update(TEntity entity)
         {
             return this.Repository.Save(entity);
         }

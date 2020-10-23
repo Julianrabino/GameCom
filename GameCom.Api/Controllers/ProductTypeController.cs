@@ -55,5 +55,41 @@ namespace GameCom.Api.Controllers
         {
             return this.mapper.Map<ProductTypeDTO>(this.service.Get(id));
         }
+
+        /// <summary>
+        /// Permite crear una nueva instancia
+        /// </summary>
+        /// <param name="value">Una instancia</param>
+        [HttpPost]
+        public void Post([FromBody] ProductTypeDTO value)
+        {
+            TryValidateModel(value);
+            this.service.Create(this.mapper.Map<ProductType>(value));
+        }
+
+        /// <summary>
+        /// Permite editar una instancia
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a editar</param>
+        /// <param name="value">Una instancia con los nuevos datos</param>
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] ProductTypeDTO value)
+        {
+            var productType = this.service.Get(id);
+            TryValidateModel(value);
+            this.mapper.Map<ProductTypeDTO, ProductType>(value, productType);
+            this.service.Update(productType);
+        }
+
+        /// <summary>
+        /// Permite borrar una instancia
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a borrar</param>
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var productType = this.service.Get(id);
+            this.service.Delete(productType);
+        }
     }
 }

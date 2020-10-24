@@ -18,7 +18,7 @@ namespace GameCom.Service.Base
         [TransactionInterceptor]
         public virtual TEntity Create(TEntity entity)
         {
-            return this.Repository.Save(entity);
+            return this.Repository.Create(entity);
         }
 
         [TransactionInterceptor]
@@ -42,7 +42,7 @@ namespace GameCom.Service.Base
         [TransactionInterceptor]
         public virtual TEntity Update(TEntity entity)
         {
-            return this.Repository.Save(entity);
+            return this.Repository.Update(entity);
         }
     }
 }

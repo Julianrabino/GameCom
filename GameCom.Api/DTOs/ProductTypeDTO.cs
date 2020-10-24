@@ -11,5 +11,7 @@ namespace GameCom.Api.DTOs
 
         [Required]
         public string Description { get; set; }
+
+        public int Version { get; set; }
     }
 }

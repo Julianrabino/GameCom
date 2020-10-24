@@ -13,16 +13,18 @@ namespace GameCom.Common.Interceptors
             //First determine whether the transaction has been enabled
             if (dbSession != null && dbSession.GetCurrentTransaction() == null)
             {
-                var transaction = dbSession.BeginTransaction();
-                try
+                using (var transaction = dbSession.BeginTransaction())
                 {
-                    await next(context);
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    throw ex;
+                    try
+                    {
+                        await next(context);
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
                 }
             }
             else

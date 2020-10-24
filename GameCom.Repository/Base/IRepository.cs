@@ -13,6 +13,10 @@ namespace GameCom.Repository.Base
 
         void Delete(TEntity entity);
 
-        TEntity Save(TEntity entity);
+        TEntity Create(TEntity entity);
+
+        TEntity Update(TEntity entity);
+
+        
     }
 }

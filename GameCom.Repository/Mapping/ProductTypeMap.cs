@@ -8,11 +8,21 @@ namespace GameCom.Repository.Mapping
     {
         public ProductTypeMap()
         {
+            //DynamicUpdate(false);
+            //OptimisticLock(OptimisticLockMode.Version);
+
+            Table("producttype");
+
             Id(x => x.Id, x =>
             {
                 x.Generator(Generators.Identity);
                 //x.Type(NHibernateUtil.Int64);
-                x.Column("Id");                
+                x.Column("Id");
+            });
+
+            Version(b => b.Version, x =>
+            {
+                x.Column("Version");
             });
 
             Property(b => b.Initials, x =>
@@ -30,8 +40,6 @@ namespace GameCom.Repository.Mapping
                 x.Column("Description");
                 x.NotNullable(true);
             });
-
-            Table("producttype");
         }
     }
 }

@@ -33,9 +33,15 @@ namespace GameCom.Repository.Base
             this.DbSession.Delete(entity);
         }
 
-        public TEntity Save(TEntity entity)
+        public TEntity Create(TEntity entity)
         {
-            this.DbSession.SaveOrUpdate(entity);
+            this.DbSession.Save(entity);
+            return entity;
+        }
+
+        public TEntity Update(TEntity entity)
+        {
+            this.DbSession.Update(entity);
             return entity;
         }
     }

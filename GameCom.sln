@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCom.Repository", "GameC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCom.Service", "GameCom.Service\GameCom.Service.csproj", "{C401EF42-7728-4E0A-9C81-0C6845B2D6BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCom.Common", "GameCom.Common\GameCom.Common.csproj", "{1C9D7863-6FBE-4A76-9EE4-F1A9DBD9C220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCom.Common", "GameCom.Common\GameCom.Common.csproj", "{1C9D7863-6FBE-4A76-9EE4-F1A9DBD9C220}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{48BFAAF5-E571-4FFD-96E3-0EA6430F3734}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCom.Test.Repository", "GameCom.Test.Repository\GameCom.Test.Repository.csproj", "{87CA7600-B529-4E40-A2A7-4A928A2F4BFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{1C9D7863-6FBE-4A76-9EE4-F1A9DBD9C220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C9D7863-6FBE-4A76-9EE4-F1A9DBD9C220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C9D7863-6FBE-4A76-9EE4-F1A9DBD9C220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CA7600-B529-4E40-A2A7-4A928A2F4BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87CA7600-B529-4E40-A2A7-4A928A2F4BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87CA7600-B529-4E40-A2A7-4A928A2F4BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87CA7600-B529-4E40-A2A7-4A928A2F4BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87CA7600-B529-4E40-A2A7-4A928A2F4BFF} = {48BFAAF5-E571-4FFD-96E3-0EA6430F3734}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D62E102F-D9BA-4656-9665-6A6AC8463EA4}

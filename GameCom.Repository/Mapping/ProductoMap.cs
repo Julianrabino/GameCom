@@ -21,10 +21,10 @@ namespace GameCom.Repository.Mapping
                     x.Column("IdProducto");
                 });
 
-            //Version(b => b.Version, x =>
-            //{
-            //    x.Column("Version");
-            //});
+            Version(b => b.Version, x =>
+            {
+                x.Column("Version");
+            });
 
             Property(b => b.Nombre, x =>
             {
@@ -39,12 +39,6 @@ namespace GameCom.Repository.Mapping
                 x.Length(255);
                 //x.Type(NHibernateUtil.String);
                 x.Column("Descripcion");
-            });
-
-            Property(b => b.TipoProducto, x =>
-            {                
-                //x.Type(NHibernateUtil.String);
-                x.Column("TipoProducto");
             });
 
             //Discriminator(x =>

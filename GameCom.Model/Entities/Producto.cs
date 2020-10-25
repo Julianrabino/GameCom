@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GameCom.Model.Entities
 {
-    public class Producto: IEntity<int>
+    public class Producto: IEntity<int>, IVersionable
     {
         public virtual int Id { get; set; }
 
@@ -13,6 +13,6 @@ namespace GameCom.Model.Entities
 
         public virtual string Descripcion { get; set; }
 
-        public virtual int TipoProducto { get; set; }
+        public virtual int Version { get; set; }
     }
 }

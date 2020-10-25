@@ -4,7 +4,7 @@ using NHibernate.Mapping.ByCode.Conformist;
 
 namespace GameCom.Repository.Mapping
 {
-    public class ProductTypeMap: ClassMapping<ProductType>
+    internal class ProductTypeMap: ClassMapping<ProductType>
     {
         public ProductTypeMap()
         {

@@ -11,7 +11,7 @@ namespace GameCom.Api.Application
         public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
         {
             var mapper = new ModelMapper();
-            mapper.AddMappings(typeof(ProductTypeMap).Assembly.ExportedTypes);
+            mapper.AddMappings(typeof(ProductoMap).Assembly.ExportedTypes);
             HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
 
             var configuration = new Configuration();

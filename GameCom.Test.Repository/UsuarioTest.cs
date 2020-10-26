@@ -2,12 +2,22 @@
 using GameCom.Test.Repo.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace GameCom.Test.Repository
 {
     [TestClass]
     public class UsuarioTest: BaseTestRepository
     {
+
+        [TestMethod]
+        public void TestGetUsuario()
+        {
+            var usuario = this.DbSession.Get<Usuario>(1);
+            Assert.IsTrue(usuario.Productos.Any());
+        }
+
+
         [TestMethod]
         public void TestInsertUsuario()
         {

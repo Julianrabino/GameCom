@@ -11,41 +11,45 @@ namespace GameCom.Repository.Mapping
         {            
             Table("usuario_posee_producto");
 
-            Id(x => x.Id, x =>
+            Id(b => b.Id, mpa =>
             {
-                x.Generator(Generators.Identity);                
-                x.Column("IdUsuarioPoseeProducto");
+                mpa.Generator(Generators.Identity);                
+                mpa.Column("IdUsuarioPoseeProducto");
             });
 
-            Property(b => b.Usuario, x =>
+            //Property(b => b.Usuario, x =>
+            //{
+            //    x.Column("IdUsuario");
+            //    x.NotNullable(true);
+            //});
+
+            ManyToOne(b => b.Usuario, map =>
             {
-                x.Column("IdUsuario");
-                x.NotNullable(true);
+                map.Column("IdUsuario");
             });
 
-            Property(b => b.Producto, x =>
+            Property(b => b.Producto, map =>
             {
-                x.Column("IdProducto");
-                x.NotNullable(true);
+                map.Column("IdProducto");
+                map.NotNullable(true);
             });
 
-            Property(b => b.FechaAdquisicion, x =>
+            Property(b => b.FechaAdquisicion, mpa =>
             {
-                x.Column("FechaAdquisicion");
-                x.NotNullable(true);
+                mpa.Column("FechaAdquisicion");
+                mpa.NotNullable(true);
             });
 
-            Property(b => b.MinutosUso, x =>
+            Property(b => b.MinutosUso, map =>
             {
-                x.Column("TiempoUsoMinutos");
-                x.NotNullable(true);
+                map.Column("TiempoUsoMinutos");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Devuelto, x =>
+            Property(b => b.Devuelto, map =>
             {
-                x.Column("Devuelto");
-                x.NotNullable(true);
-                //x.Type(NHibernateUtil.tu);
+                map.Column("Devuelto");
+                map.NotNullable(true);
             });            
         }
     }

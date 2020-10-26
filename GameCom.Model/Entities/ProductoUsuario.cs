@@ -7,9 +7,9 @@ namespace GameCom.Model.Entities
     {
         //public virtual int Id { get; set; }
 
-        public virtual int Usuario { get; set; }
+        //public virtual int Usuario { get; set; }
 
-        //public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
 
         public virtual int Producto { get; set; }
 

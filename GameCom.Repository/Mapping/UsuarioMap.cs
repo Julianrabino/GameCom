@@ -4,50 +4,63 @@ using NHibernate.Mapping.ByCode.Conformist;
 
 namespace GameCom.Repository.Mapping
 {
-    public class UsuarioMap: ClassMapping<Usuario>
+    public class UsuarioMap : ClassMapping<Usuario>
     {
         public UsuarioMap()
-        {            
+        {
             Table("usuario");
 
-            Id(x => x.Id, x =>
+            Id(b => b.Id, map =>
             {
-                x.Generator(Generators.Identity);                
-                x.Column("IdUsuario");
+                map.Generator(Generators.Identity);
+                map.Column("IdUsuario");
             });
 
-            Version(b => b.Version, x =>
+            Version(b => b.Version, map =>
             {
-                x.Column("Version");
+                map.Column("Version");
             });
 
-            Property(b => b.Email, x =>
+            Property(b => b.Email, map =>
             {
-                x.Length(100);
-                x.Column("Email");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Email");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Nombre, x =>
+            Property(b => b.Nombre, map =>
             {
-                x.Length(100);
-                x.Column("Nombre");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Nombre");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Apellido, x =>
+            Property(b => b.Apellido, map =>
             {
-                x.Length(100);
-                x.Column("Apellido");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Apellido");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Alias, x =>
+            Property(b => b.Alias, map =>
             {
-                x.Length(100);
-                x.Column("Alias");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Alias");
+                map.NotNullable(true);
             });
+
+            Set<ProductoUsuario>("productos", map =>
+            {
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                map.Inverse(true);
+                map.Key(k =>
+                {
+                    k.Column("IdUsuario");
+                });
+            },
+            action => action.OneToMany());
         }
     }
 }

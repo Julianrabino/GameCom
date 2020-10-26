@@ -3,9 +3,9 @@ using System;
 
 namespace GameCom.Model.Entities
 {
-    public class ProductoUsuario : IEntity<int>
+    public class ProductoUsuario : EntityBase<int>
     {
-        public virtual int Id { get; set; }
+        //public virtual int Id { get; set; }
 
         public virtual int Usuario { get; set; }
 

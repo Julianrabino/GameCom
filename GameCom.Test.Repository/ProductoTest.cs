@@ -27,11 +27,21 @@ namespace GameCom.Test.Repository
         [TestMethod]
         public void TestUpdatePelicula()
         {
-            var pelicula = this.DbSession.Get<Pelicula>(3);            
+            var pelicula = this.DbSession.Get<Pelicula>(4);            
             pelicula.Descripcion += "ED";
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Update(pelicula);
             tx.Commit();
         }
+
+        [TestMethod]
+        public void TestDeletePelicula()
+        {
+            var pelicula = this.DbSession.Get<Pelicula>(3);            
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Delete(pelicula);
+            tx.Commit();
+        }
+
     }
 }

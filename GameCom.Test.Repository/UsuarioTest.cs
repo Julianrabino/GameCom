@@ -13,7 +13,7 @@ namespace GameCom.Test.Repository
         {
             var be = new Usuario
             {
-                Email = "Julianrabino@gmail.com",
+                Email = "JulianCesar18@hotmail.com",
                 Nombre = "Julian",
                 Apellido = "Rabino",
                 Alias = "Joncito"
@@ -27,18 +27,18 @@ namespace GameCom.Test.Repository
         [TestMethod]
         public void TestInsertProductoUsuario()
         {
-            var be = new ProductoUsuario
-            {
-                Usuario = 1,
-                Producto = 1,
-                Devuelto = false,
-                FechaAdquisicion = DateTime.Today,
-                MinutosUso = 0
-            };
+            //var be = new ProductoUsuario
+            //{
+            //    Usuario = 1,
+            //    Producto = 1,
+            //    Devuelto = false,
+            //    FechaAdquisicion = DateTime.Today,
+            //    MinutosUso = 0
+            //};
 
-            using var tx = this.DbSession.BeginTransaction();
-            this.DbSession.Save(be);
-            tx.Commit();
+            //using var tx = this.DbSession.BeginTransaction();
+            //this.DbSession.Save(be);
+            //tx.Commit();
         }
 
         [TestMethod]

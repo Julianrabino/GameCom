@@ -2,9 +2,9 @@
 
 namespace GameCom.Model.Entities
 {
-    public class ProductType: IEntity<int>, IVersionable
+    public class ProductType: EntityBase<int>, IVersionable
     {
-        public virtual int Id { get; set; }
+        //public virtual int Id { get; set; }
 
         public virtual string Initials { get; set; }
 

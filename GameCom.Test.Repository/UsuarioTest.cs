@@ -21,16 +21,17 @@ namespace GameCom.Test.Repository
         public void TestInsertProductoAUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
+            var producto = this.DbSession.Get<Producto>(1);
 
-            var producto = new ProductoUsuario
+            var productoUsuario = new ProductoUsuario
             {                
-                Producto = 1,
+                Producto = producto,
                 Devuelto = false,
                 FechaAdquisicion = DateTime.Now,
                 MinutosUso = 0
             };
 
-            usuario.AgregarProducto(producto);
+            usuario.AgregarProducto(productoUsuario);
 
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Save(usuario);
@@ -41,7 +42,7 @@ namespace GameCom.Test.Repository
         public void TestEliminarProductoAUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
-            var producto = usuario.Productos.FirstOrDefault(p => p.Id == 2);
+            var producto = usuario.Productos.FirstOrDefault(p => p.Id == 3);
             usuario.EliminarProducto(producto);
 
             using var tx = this.DbSession.BeginTransaction();
@@ -64,23 +65,6 @@ namespace GameCom.Test.Repository
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Save(be);
             tx.Commit();
-        }
-
-        [TestMethod]
-        public void TestInsertProductoUsuario()
-        {
-            //var be = new ProductoUsuario
-            //{
-            //    Usuario = 1,
-            //    Producto = 1,
-            //    Devuelto = false,
-            //    FechaAdquisicion = DateTime.Today,
-            //    MinutosUso = 0
-            //};
-
-            //using var tx = this.DbSession.BeginTransaction();
-            //this.DbSession.Save(be);
-            //tx.Commit();
         }
 
         [TestMethod]

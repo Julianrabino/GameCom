@@ -28,10 +28,15 @@ namespace GameCom.Repository.Mapping
                 map.Column("IdUsuario");
             });
 
-            Property(b => b.Producto, map =>
+            //Property(b => b.Producto, map =>
+            //{
+            //    map.Column("IdProducto");
+            //    map.NotNullable(true);
+            //});
+
+            ManyToOne(b => b.Producto, map =>
             {
                 map.Column("IdProducto");
-                map.NotNullable(true);
             });
 
             Property(b => b.FechaAdquisicion, mpa =>

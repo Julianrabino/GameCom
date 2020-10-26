@@ -11,7 +11,7 @@ namespace GameCom.Model.Entities
 
         public virtual Usuario Usuario { get; set; }
 
-        public virtual int Producto { get; set; }
+        public virtual Producto Producto { get; set; }
 
         //public virtual Producto Producto { get; set; }
 

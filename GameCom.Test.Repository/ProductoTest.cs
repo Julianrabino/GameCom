@@ -25,7 +25,7 @@ namespace GameCom.Test.Repository
         }
 
         [TestMethod]
-        public void TestUodatePelicula()
+        public void TestUpdatePelicula()
         {
             var pelicula = this.DbSession.Get<Pelicula>(3);            
             pelicula.Descripcion += "ED";

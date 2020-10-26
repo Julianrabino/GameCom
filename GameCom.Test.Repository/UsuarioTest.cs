@@ -17,6 +17,38 @@ namespace GameCom.Test.Repository
             Assert.IsTrue(usuario.Productos.Any());
         }
 
+        [TestMethod]
+        public void TestInsertProductoAUsuario()
+        {
+            var usuario = this.DbSession.Get<Usuario>(1);
+
+            var producto = new ProductoUsuario
+            {                
+                Producto = 1,
+                Devuelto = false,
+                FechaAdquisicion = DateTime.Now,
+                MinutosUso = 0
+            };
+
+            usuario.AgregarProducto(producto);
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(usuario);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestEliminarProductoAUsuario()
+        {
+            var usuario = this.DbSession.Get<Usuario>(1);
+            var producto = usuario.Productos.FirstOrDefault(p => p.Id == 2);
+            usuario.EliminarProducto(producto);
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(usuario);
+            tx.Commit();
+        }
+
 
         [TestMethod]
         public void TestInsertUsuario()

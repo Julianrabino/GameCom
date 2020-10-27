@@ -78,5 +78,31 @@ namespace GameCom.Test.Repository
             this.DbSession.Update(be);
             tx.Commit();
         }
+
+        [TestMethod]
+        public void TestSolicitudAmistad()
+        {
+            var usuario1 = this.DbSession.Get<Usuario>(1);
+            var usuario2 = this.DbSession.Get<Usuario>(3);
+
+            usuario1.EnviarSolicitudAmistad(usuario2);
+            
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(usuario1);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestRechazarSolicitudAmistad()
+        {
+            var usuario1 = this.DbSession.Get<Usuario>(1);
+            var usuario2 = this.DbSession.Get<Usuario>(3);
+
+            usuario2.RechazarSolicitudAmistad(usuario1);
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(usuario2);
+            tx.Commit();
+        }
     }
 }

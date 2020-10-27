@@ -61,6 +61,33 @@ namespace GameCom.Repository.Mapping
                 });
             },
             action => action.OneToMany());
+
+            Set<Usuario>("solicitudesAmistadEnviadas", map =>
+            {
+                map.Table("usuario_solicitud_usuario");
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.Persist);
+                map.Inverse(true);
+                map.Key(k =>
+                {
+                    k.Column("IdUsuarioSolicitante");                    
+                });
+            },
+            action => action.ManyToMany(k => k.Column("IdUsuarioSolicitado")));
+
+            Set<Usuario>("solicitudesAmistadRecibidas", map =>
+            {
+                map.Table("usuario_solicitud_usuario");
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.Persist);
+                map.Key(k =>
+                {
+                    k.Column("IdUsuarioSolicitado");
+                });
+            },
+            action => action.ManyToMany(k => k.Column("IdUsuarioSolicitante")));
         }
     }
 }

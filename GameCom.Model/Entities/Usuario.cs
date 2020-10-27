@@ -10,9 +10,15 @@ namespace GameCom.Model.Entities
     {
         protected ISet<ProductoUsuario> productos;
 
+        protected ISet<Usuario> solicitudesAmistadEnviadas;
+
+        protected ISet<Usuario> solicitudesAmistadRecibidas;
+
         public Usuario()
         {
             this.productos = new HashSet<ProductoUsuario>();
+            this.solicitudesAmistadEnviadas = new HashSet<Usuario>();
+            this.solicitudesAmistadRecibidas = new HashSet<Usuario>();
         }
 
         //public virtual int Id { get; set; }
@@ -25,8 +31,9 @@ namespace GameCom.Model.Entities
 
         public virtual string Alias { get; set; }
 
-        public virtual int Version { get; set; }        
+        public virtual int Version { get; set; }
 
+        #region Productos
         public virtual IEnumerable<ProductoUsuario> Productos
         {
             get { return this.productos.AsEnumerable(); }
@@ -43,5 +50,43 @@ namespace GameCom.Model.Entities
             this.productos.Remove(producto);
             //producto.Usuario = null;
         }
+        #endregion
+
+        #region SolicitudesEnviadas
+        public virtual IEnumerable<Usuario> SolicitudesAmistadEnviadas
+        {
+            get { return this.solicitudesAmistadEnviadas.AsEnumerable(); }
+        }
+
+        public virtual void EnviarSolicitudAmistad(Usuario usuario)
+        {
+            this.solicitudesAmistadEnviadas.Add(usuario);
+            usuario.solicitudesAmistadRecibidas.Add(this);
+        }
+
+        public virtual void CancelarSolicitudAmistadEnviada(Usuario usuario)
+        {
+            this.solicitudesAmistadEnviadas.Remove(usuario);
+            usuario.solicitudesAmistadRecibidas.Remove(this);
+        }
+        #endregion
+
+        #region SolicitudesRecibidas
+        public virtual IEnumerable<Usuario> SolicitudesAmistadRecibidas
+        {
+            get { return this.solicitudesAmistadRecibidas.AsEnumerable(); }
+        }
+
+        //public virtual void AgregarSolicitudAmistad(Usuario usuario)
+        //{
+        //    this.solicitudesAmistadRecibidas.Add(usuario);
+        //}
+
+        public virtual void RechazarSolicitudAmistad(Usuario usuario)
+        {
+            this.solicitudesAmistadRecibidas.Remove(usuario);
+            usuario.solicitudesAmistadEnviadas.Remove(this);
+        }
+        #endregion
     }
 }

@@ -14,11 +14,15 @@ namespace GameCom.Model.Entities
 
         protected ISet<Usuario> solicitudesAmistadRecibidas;
 
+        protected ISet<Usuario> amistades;
+        
+
         public Usuario()
         {
             this.productos = new HashSet<ProductoUsuario>();
             this.solicitudesAmistadEnviadas = new HashSet<Usuario>();
             this.solicitudesAmistadRecibidas = new HashSet<Usuario>();
+            this.amistades = new HashSet<Usuario>();
         }
 
         //public virtual int Id { get; set; }
@@ -77,15 +81,31 @@ namespace GameCom.Model.Entities
             get { return this.solicitudesAmistadRecibidas.AsEnumerable(); }
         }
 
-        //public virtual void AgregarSolicitudAmistad(Usuario usuario)
-        //{
-        //    this.solicitudesAmistadRecibidas.Add(usuario);
-        //}
+        public virtual void AceptarSolicitudAmistad(Usuario usuario)
+        {
+            this.solicitudesAmistadRecibidas.Remove(usuario);
+            usuario.solicitudesAmistadEnviadas.Remove(this);
+            this.amistades.Add(usuario);
+            usuario.amistades.Add(this);
+        }
 
         public virtual void RechazarSolicitudAmistad(Usuario usuario)
         {
             this.solicitudesAmistadRecibidas.Remove(usuario);
             usuario.solicitudesAmistadEnviadas.Remove(this);
+        }
+        #endregion
+
+        #region admistades
+        public virtual IEnumerable<Usuario> Amistades
+        {
+            get { return this.amistades.AsEnumerable(); }
+        }
+
+        public virtual void EliminarAmistad(Usuario usuario)
+        {
+            this.amistades.Remove(usuario);
+            usuario.amistades.Remove(this);
         }
         #endregion
     }

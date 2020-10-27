@@ -88,6 +88,20 @@ namespace GameCom.Repository.Mapping
                 });
             },
             action => action.ManyToMany(k => k.Column("IdUsuarioSolicitante")));
+
+
+            Set<Usuario>("amistades", map =>
+            {
+                map.Table("usuario_amigo_usuario");
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.Persist);
+                map.Key(k =>
+                {
+                    k.Column("IdUsuarioA");
+                });
+            },
+           action => action.ManyToMany(k => k.Column("IdUsuarioB")));
         }
     }
 }

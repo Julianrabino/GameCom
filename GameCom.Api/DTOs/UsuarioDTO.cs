@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GameCom.Model.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameCom.Api.DTOs
 {

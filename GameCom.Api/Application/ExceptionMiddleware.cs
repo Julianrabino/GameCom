@@ -25,6 +25,11 @@ namespace GameCom.Api.Application
             {
                 await next(httpContext);
             }
+            catch (InvalidVersionException ex)
+            {
+                logger.LogError($"Something went wrong: {ex}");
+                await HandleInvalidVersionExceptionAsync(httpContext, ex);
+            }
             catch (ModelException ex)
             {
                 logger.LogError($"Something went wrong: {ex}");
@@ -40,6 +45,18 @@ namespace GameCom.Api.Application
                 logger.LogError($"Something went wrong: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
+        }
+
+        private static Task HandleInvalidVersionExceptionAsync(HttpContext context, InvalidVersionException exception)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.PreconditionFailed;
+
+            return context.Response.WriteAsync(new ErrorDetails()
+            {
+                StatusCode = context.Response.StatusCode,
+                Message = exception.Message
+            }.ToString());
         }
 
         private static Task HandleModelExceptionAsync(HttpContext context, ModelException exception)

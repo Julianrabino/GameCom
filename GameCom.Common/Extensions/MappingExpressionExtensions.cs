@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace GameCom.Common.Extensions
 {
-    public static class MappingExpressionExtension
+    public static class MappingExpressionExtensions
     {
         public static IMappingExpression<TSource, TDestination> IgnoreAllNonExisting<TSource, TDestination>
             (this IMappingExpression<TSource, TDestination> expression)

@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using GameCom.Api.Application;
 using GameCom.Api.DTOs;
+using GameCom.Common.Extensions;
+using GameCom.Model.Base;
 using GameCom.Model.Entities;
 using GameCom.Service.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +70,7 @@ namespace GameCom.Api.Controllers
         {
             var entidad = this.service.Get(id);
             TryValidateModel(value);
+            TryValidateVersionable(entidad);
             this.mapper.Map<UsuarioDTO, Usuario>(value, entidad);
             this.service.Update(entidad);
         }
@@ -80,6 +84,25 @@ namespace GameCom.Api.Controllers
         {
             var entidad = this.service.Get(id);
             this.service.Delete(entidad);
+        }
+
+        public void TryValidateVersionable(object entidad)
+        {
+            IVersionable versionable = entidad as IVersionable;
+            if (versionable != null)
+            {
+                if (!this.Request.Headers.ContainsKey("if-match"))
+                {
+                    throw new InvalidVersionException("Debe indicar el campo versión dentro de los headers HTTP");
+                }
+                else 
+                {
+                    if (versionable.Version != this.Request.Headers["if-match"].ToString().TryParseToInt())
+                    {
+                        throw new InvalidVersionException("Está operando con información desactualizada");
+                    } 
+                }
+            }
         }
     }
 }

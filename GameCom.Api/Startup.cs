@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace GameCom.Api
 {
@@ -27,7 +28,9 @@ namespace GameCom.Api
             services.AddNHibernate(connStr);
             services.AddTransient<ProductTypeService>();
             services.AddTransient<ProductTypeRepository>();
-            
+            services.AddTransient<UsuarioService>();
+            services.AddTransient<UsuarioRepository>();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers()
@@ -38,6 +41,12 @@ namespace GameCom.Api
             //{
             //    //Add AOP configuration
             //});
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCom API", Version = "1", Description = "GameCom API v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +60,12 @@ namespace GameCom.Api
             app.UseExceptionMiddleware();
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GameCom API V1");
+            });
 
             app.UseRouting();
 

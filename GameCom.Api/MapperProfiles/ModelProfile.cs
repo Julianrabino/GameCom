@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GameCom.Api.DTOs;
+using GameCom.Common.Extensions;
 using GameCom.Model.Entities;
 
 namespace Stock.Api.MapperProfiles
@@ -19,6 +20,11 @@ namespace Stock.Api.MapperProfiles
             //    .ReverseMap()
             //    .ForMember(s => s.Id, opt => opt.Ignore())
             //    .ForMember(s => s.ProductType, opt => opt.Ignore());                
+
+            CreateMap<Usuario, UsuarioDTO>()
+                .IgnoreAllNonExisting()
+                .ReverseMap()
+                .ForMember(s => s.Id, opt => opt.Ignore());
         }        
     }
 

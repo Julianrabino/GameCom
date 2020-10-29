@@ -71,6 +71,16 @@ namespace GameCom.Test.Repository
         }
 
         [TestMethod]
+        public void TestUpdateUsuario()
+        {
+            var be = this.DbSession.Get<Usuario>(1);
+            be.DatosPersonales.FechaNacimiento = new DateTime(1984, 3, 20);
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(be);
+            tx.Commit();
+        }
+
+        [TestMethod]
         public void TestUpdateProductoUsuario()
         {
             var be = this.DbSession.Get<ProductoUsuario>(1);

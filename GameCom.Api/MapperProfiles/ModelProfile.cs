@@ -23,6 +23,10 @@ namespace Stock.Api.MapperProfiles
 
             CreateMap<Usuario, UsuarioDTO>()
                 .IgnoreAllNonExisting()
+                .ForMember(t => t.Nombre, opt => opt.MapFrom(s => s.DatosPersonales.Nombre))
+                .ForMember(t => t.Apellido, opt => opt.MapFrom(s => s.DatosPersonales.Apellido))
+                .ForMember(t => t.FechaNacimiento, opt => opt.MapFrom(s => s.DatosPersonales.FechaNacimiento))
+                .ForMember(t => t.Telefono, opt => opt.MapFrom(s => s.DatosPersonales.Telefono))
                 .ReverseMap()
                 .ForMember(s => s.Id, opt => opt.Ignore());
         }        

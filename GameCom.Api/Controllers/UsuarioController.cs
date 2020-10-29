@@ -86,7 +86,7 @@ namespace GameCom.Api.Controllers
             this.service.Delete(entidad);
         }
 
-        public void TryValidateVersionable(object entidad)
+        private void TryValidateVersionable(object entidad)
         {
             IVersionable versionable = entidad as IVersionable;
             if (versionable != null)

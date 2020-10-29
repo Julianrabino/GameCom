@@ -56,7 +56,7 @@ namespace GameCom.Api.Application
             {
                 StatusCode = context.Response.StatusCode,
                 Message = exception.Message
-            }.ToString());
+            }.ToJson());
         }
 
         private static Task HandleModelExceptionAsync(HttpContext context, ModelException exception)
@@ -68,7 +68,7 @@ namespace GameCom.Api.Application
             {
                 StatusCode = context.Response.StatusCode,
                 Message = exception.Message
-            }.ToString());
+            }.ToJson());
         }
 
         private static Task HandleRepositoryExceptionAsync(HttpContext context, RepositoryException exception)
@@ -80,7 +80,7 @@ namespace GameCom.Api.Application
             {
                 StatusCode = context.Response.StatusCode,
                 Message = exception.Message
-            }.ToString());
+            }.ToJson());
         }
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
@@ -92,7 +92,7 @@ namespace GameCom.Api.Application
                 {
                     StatusCode = context.Response.StatusCode,
                     Message = "Internal Server Error"
-                }.ToString());
+                }.ToJson());
         }
     }
 }

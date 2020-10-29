@@ -7,7 +7,7 @@ namespace GameCom.Api.Application
         public int StatusCode { get; set; }
         public string Message { get; set; }
 
-        public override string ToString()
+        public string ToJson()
         {
             return JsonSerializer.Serialize(this);
         }

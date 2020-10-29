@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GameCom.Api.Application;
 using GameCom.Api.DTOs;
+using GameCom.Api.Resources;
 using GameCom.Common.Extensions;
 using GameCom.Model.Base;
 using GameCom.Model.Entities;
@@ -93,13 +94,13 @@ namespace GameCom.Api.Controllers
             {
                 if (!this.Request.Headers.ContainsKey("if-match"))
                 {
-                    throw new InvalidVersionException("Debe indicar el campo versión dentro de los headers HTTP");
+                    throw new InvalidVersionException(Mensajes._1);
                 }
                 else 
                 {
                     if (versionable.Version != this.Request.Headers["if-match"].ToString().TryParseToInt())
                     {
-                        throw new InvalidVersionException("Está operando con información desactualizada");
+                        throw new InvalidVersionException(Mensajes._2);
                     } 
                 }
             }

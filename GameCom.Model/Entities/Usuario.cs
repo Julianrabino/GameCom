@@ -23,19 +23,18 @@ namespace GameCom.Model.Entities
             this.solicitudesAmistadEnviadas = new HashSet<Usuario>();
             this.solicitudesAmistadRecibidas = new HashSet<Usuario>();
             this.amistades = new HashSet<Usuario>();
+            this.DatosPersonales = new UsuarioDatosPersonales();
         }
 
         //public virtual int Id { get; set; }
 
         public virtual string Email { get; set; }
 
-        public virtual string Nombre { get; set; }
-
-        public virtual string Apellido { get; set; }
-
         public virtual string Alias { get; set; }
 
         public virtual int Version { get; set; }
+
+        public virtual UsuarioDatosPersonales DatosPersonales { get; set; }
 
         #region Productos
         public virtual IEnumerable<ProductoUsuario> Productos

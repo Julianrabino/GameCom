@@ -56,10 +56,13 @@ namespace GameCom.Test.Repository
         {
             var be = new Usuario
             {
-                Email = "JulianCesar18@hotmail.com",
-                Nombre = "Julian",
-                Apellido = "Rabino",
-                Alias = "Joncito"
+                Email = "Josesucho@hotmail.com",
+                DatosPersonales =
+                {
+                    Nombre = "José",
+                    Apellido = "Suarez",
+                },
+                Alias = "Josego"
             };
 
             using var tx = this.DbSession.BeginTransaction();

@@ -28,19 +28,47 @@ namespace GameCom.Repository.Mapping
                 map.NotNullable(true);
             });
 
-            Property(b => b.Nombre, map =>
+            Component(b => b.DatosPersonales, map =>
             {
-                map.Length(100);
-                map.Column("Nombre");
-                map.NotNullable(true);
+                map.Property(b => b.Nombre, c =>
+                {
+                    c.Length(100);
+                    c.Column("Nombre");
+                    c.NotNullable(true);
+                });
+
+                map.Property(b => b.Apellido, c =>
+                {
+                    c.Length(100);
+                    c.Column("Apellido");
+                    c.NotNullable(true);
+                });
+
+                map.Property(b => b.FechaNacimiento, c =>
+                {
+                    c.Column("FechaNacimiento");
+                });
+
+                map.Property(b => b.Telefono, c =>
+                {
+                    c.Length(45);
+                    c.Column("Telefono");
+                });
             });
 
-            Property(b => b.Apellido, map =>
-            {
-                map.Length(100);
-                map.Column("Apellido");
-                map.NotNullable(true);
-            });
+            //Property(b => b.Nombre, map =>
+            //{
+            //    map.Length(100);
+            //    map.Column("Nombre");
+            //    map.NotNullable(true);
+            //});
+
+            //Property(b => b.Apellido, map =>
+            //{
+            //    map.Length(100);
+            //    map.Column("Apellido");
+            //    map.NotNullable(true);
+            //});
 
             Property(b => b.Alias, map =>
             {

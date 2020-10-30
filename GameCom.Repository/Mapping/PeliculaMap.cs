@@ -15,22 +15,22 @@ namespace GameCom.Repository.Mapping
                 x.Column("IdPelicula");
             });
 
-            Property(b => b.Productora, x =>
+            Property(b => b.Productora, map =>
             {
-                x.Length(100);
+                map.Length(100);
                 //x.Type(NHibernateUtil.String);
-                x.Column("Productora");
-                x.NotNullable(true);
+                map.Column("Productora");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Resenia, x =>
+            Property(b => b.Resenia, map =>
             {
-                x.Column("Resenia");
+                map.Column("Resenia");
             });
 
-            Property(b => b.DuracionMinutos, x =>
+            Property(b => b.DuracionMinutos, map =>
             {
-                x.Column("DuracionMinutos");
+                map.Column("DuracionMinutos");
             });
         }
     }

@@ -14,31 +14,28 @@ namespace GameCom.Repository.Mapping
         {
             Table("producto");
 
-            Id(x => x.Id, x =>
+            Id(b => b.Id, map =>
                 {
-                    x.Generator(Generators.Identity);
-                    //x.Type(NHibernateUtil.Int64);
-                    x.Column("IdProducto");
+                    map.Generator(Generators.Identity);
+                    map.Column("IdProducto");
                 });
 
-            Version(b => b.Version, x =>
+            Version(b => b.Version, map =>
             {
-                x.Column("Version");
+                map.Column("Version");
             });
 
-            Property(b => b.Nombre, x =>
+            Property(b => b.Nombre, map =>
             {
-                x.Length(100);
-                //x.Type(NHibernateUtil.String);
-                x.Column("Nombre");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Nombre");
+                map.NotNullable(true);
             });
 
-            Property(b => b.Descripcion, x =>
+            Property(b => b.Descripcion, map =>
             {
-                x.Length(255);
-                //x.Type(NHibernateUtil.String);
-                x.Column("Descripcion");
+                map.Length(255);
+                map.Column("Descripcion");
             });
 
             //Discriminator(x =>

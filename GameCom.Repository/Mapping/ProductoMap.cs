@@ -38,6 +38,19 @@ namespace GameCom.Repository.Mapping
                 map.Column("Descripcion");
             });
 
+            Set<GeneroProducto>("generos", map =>
+            {
+                map.Table("producto_genero");
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.Persist);
+                map.Key(k =>
+                {
+                    k.Column("IdProducto");
+                });
+            },
+            action => action.ManyToMany(k => k.Column("CodigoGenero")));
+
             //Discriminator(x =>
             //{
             //    x.Column("TipoProducto");

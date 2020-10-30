@@ -43,5 +43,34 @@ namespace GameCom.Test.Repository
             tx.Commit();
         }
 
+        [TestMethod]
+        public void TestInsertVideoJuego()
+        {
+            var pelicula = new VideoJuego
+            {
+                Nombre = "Flight Simualtor",
+                Descripcion = "El mejor simualdor de vuelos",
+                Desarroladora = "Microsoft",
+                RequerimientosMinimos = "Una máquina de la NASA",
+                RequerimientosRecomendados = "Dos máquinas de la NASA"                
+            };
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(pelicula);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestAgregarGenero()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var genero = this.DbSession.Get<GeneroProducto>("VSIM");
+
+            videoJuego.AgregarGenero(genero);
+            
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Update(videoJuego);
+            tx.Commit();
+        }
     }
 }

@@ -30,6 +30,6 @@ namespace GameCom.Test.Repository
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Update(be);
             tx.Commit();
-        }        
+        }
     }
 }

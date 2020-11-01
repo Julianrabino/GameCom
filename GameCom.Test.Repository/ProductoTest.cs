@@ -72,5 +72,19 @@ namespace GameCom.Test.Repository
             this.DbSession.Update(videoJuego);
             tx.Commit();
         }
+
+        [TestMethod]
+        public void TestInsertLogroVideoJuego()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            videoJuego.AgregaraLogro(new LogroProducto("001")
+            {
+                Descripcion = "Primer Vuelo"
+            });
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(videoJuego);
+            tx.Commit();
+        }
     }
 }

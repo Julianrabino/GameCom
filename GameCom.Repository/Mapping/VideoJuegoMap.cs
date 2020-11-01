@@ -13,28 +13,40 @@ namespace GameCom.Repository.Mapping
     {
         public VideoJuegoMap()
         {
-            Key(x =>
+            Key(b =>
             {
-                x.Column("IdVideoJuego");                
+                b.Column("IdVideoJuego");                
             });            
 
-            Property(b => b.Desarroladora, x =>
+            Property(b => b.Desarroladora, map =>
             {
-                x.Length(100);
-                //x.Type(NHibernateUtil.String);
-                x.Column("Desarrolladora");
-                x.NotNullable(true);
+                map.Length(100);
+                map.Column("Desarrolladora");
+                map.NotNullable(true);
             });
 
-            Property(b => b.RequerimientosMinimos, x =>
+            Property(b => b.RequerimientosMinimos, map =>
             {
-                x.Column("RequerimientosMinimos");
+                map.Column("RequerimientosMinimos");
             });
 
-            Property(b => b.RequerimientosRecomendados, x =>
+            Property(b => b.RequerimientosRecomendados, map =>
             {
-                x.Column("RequerimientosRecomendados");
-            });            
+                map.Column("RequerimientosRecomendados");
+            });
+
+            Set<LogroProducto>("logros", map =>
+            {
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                //map.Inverse(true);
+                map.Key(k =>
+                {
+                    k.Column("IdProducto");
+                });
+            },
+            action => action.OneToMany());
         }
     }
 }

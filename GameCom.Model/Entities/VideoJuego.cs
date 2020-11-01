@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace GameCom.Model.Entities
 {
@@ -28,9 +25,9 @@ namespace GameCom.Model.Entities
         }
 
         public virtual void AgregaraLogro(LogroProducto logro)
-        {
-            logro.Id.Producto = this;
+        {            
             this.logros.Add(logro);
+            logro.Producto = this;
         }
 
         public virtual void EliminarLogro(LogroProducto logro)

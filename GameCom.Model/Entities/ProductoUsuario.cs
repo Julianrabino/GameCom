@@ -13,8 +13,22 @@ namespace GameCom.Model.Entities
         {
             this.Id = new IdProductoUsuario();
             this.logros = new HashSet<LogroProductoUsuario>();
-        }       
-        
+        }
+
+        #region indirecciones a ID
+        public virtual Usuario Usuario
+        {
+            get { return this.Id.Usuario; }
+            set { this.Id.Usuario = value; }
+        }
+
+        public virtual Producto Producto
+        {
+            get { return this.Id.Producto; }
+            set { this.Id.Producto = value; }
+        }
+        #endregion
+
         public virtual DateTime FechaAdquisicion { get; set; }
 
         public virtual int MinutosUso { get; set; }
@@ -28,8 +42,9 @@ namespace GameCom.Model.Entities
         }
 
         public virtual void AgregarLogro(LogroProductoUsuario logro)
-        {
+        {            
             this.logros.Add(logro);
+            logro.Usuario = this.Usuario;
         }
 
         public virtual void EliminarLogro(LogroProductoUsuario logro)

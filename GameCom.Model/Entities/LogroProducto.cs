@@ -1,6 +1,4 @@
 ﻿using GameCom.Model.Base;
-using System;
-using System.Runtime.InteropServices;
 
 namespace GameCom.Model.Entities
 {
@@ -15,6 +13,20 @@ namespace GameCom.Model.Entities
         {
             this.Id = new IdLogroProducto();
         }
+
+        #region indirecciones a ID       
+        public virtual Producto Producto
+        {
+            get { return this.Id.Producto; }
+            set { this.Id.Producto = value; }
+        }
+
+        public virtual string Codigo
+        {
+            get { return this.Id.Codigo; }
+            set { this.Id.Codigo = value; }
+        }
+        #endregion
 
         public virtual string Descripcion { get; set; }
     }

@@ -21,6 +21,7 @@ namespace GameCom.Repository.Mapping
                 map.ManyToOne(b => b.Producto, mk =>
                 {
                     mk.Column("IdProducto");
+                    mk.Lazy(LazyRelation.NoProxy);
                 });
             });
 

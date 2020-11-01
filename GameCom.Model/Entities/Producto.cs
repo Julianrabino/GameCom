@@ -8,9 +8,12 @@ namespace GameCom.Model.Entities
     {
         protected ISet<GeneroProducto> generos;
 
+        protected ISet<ReseniaProducto> resenias;
+
         public Producto()
         {
             this.generos = new HashSet<GeneroProducto>();
+            this.resenias = new HashSet<ReseniaProducto>();
         }
 
         public virtual string Nombre { get; set; }
@@ -33,6 +36,25 @@ namespace GameCom.Model.Entities
         public virtual void EliminarGenero(GeneroProducto genero)
         {
             this.generos.Remove(genero);
+        }
+        #endregion
+
+
+        #region Resenias
+        public virtual IEnumerable<ReseniaProducto> Resenias
+        {
+            get { return this.resenias.AsEnumerable(); }
+        }
+
+        public virtual void AgregarResenia(ReseniaProducto resenia)
+        {
+            this.resenias.Add(resenia);
+            resenia.Producto = this;
+        }
+
+        public virtual void EliminarResenia(ReseniaProducto resenia)
+        {
+            this.resenias.Remove(resenia);
         }
         #endregion
     }

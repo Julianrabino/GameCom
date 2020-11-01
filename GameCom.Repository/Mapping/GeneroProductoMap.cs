@@ -12,7 +12,7 @@ namespace GameCom.Repository.Mapping
         {
             Table("genero");
 
-            Id(x => x.Id, map =>
+            Id(b => b.Id, map =>
                 {
                     map.Generator(Generators.Assigned);
                     map.Column("CodigoGenero");

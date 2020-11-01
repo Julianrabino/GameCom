@@ -1,10 +1,6 @@
 ﻿using GameCom.Model.Entities;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace GameCom.Repository.Mapping
 {
@@ -50,6 +46,19 @@ namespace GameCom.Repository.Mapping
                 });
             },
             action => action.ManyToMany(k => k.Column("CodigoGenero")));
+
+            Set<ReseniaProducto>("resenias", map =>
+            {
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                //map.Inverse(true);
+                map.Key(k =>
+                {
+                    k.Column("IdProducto");
+                });
+            },
+            action => action.OneToMany());
 
             //Discriminator(x =>
             //{

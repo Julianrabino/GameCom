@@ -1,12 +1,20 @@
 ﻿using GameCom.Model.Entities;
 using GameCom.Test.Repo.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace GameCom.Test.Repository
 {
     [TestClass]
     public class ProductoTest: BaseTestRepository
     {
+        [TestMethod]
+        public void TestObtenerProducto()
+        {
+            var be = this.DbSession.Get<VideoJuego>(5);
+            Assert.IsTrue(be.Resenias.Any());
+        }
+
         [TestMethod]
         public void TestInsertPelicula()
         {
@@ -80,6 +88,27 @@ namespace GameCom.Test.Repository
             videoJuego.AgregaraLogro(new LogroProducto("001")
             {
                 Descripcion = "Primer Vuelo"
+            });
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(videoJuego);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestAgregarResenia()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var usuario = this.DbSession.Get<Usuario>(1);
+            var productoUsuario = usuario.Productos.FirstOrDefault(p => p.Producto.Equals(videoJuego));
+
+            videoJuego.AgregarResenia(new ReseniaProducto 
+            { 
+                MinutosUsoUsuario = productoUsuario.MinutosUso,
+                Cuerpo = "Está buenardo",
+                Titulo = "Compralo",
+                Recomendado = true,
+                Usuario = usuario
             });
 
             using var tx = this.DbSession.BeginTransaction();

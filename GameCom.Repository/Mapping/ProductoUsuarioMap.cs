@@ -11,33 +11,19 @@ namespace GameCom.Repository.Mapping
         {            
             Table("usuario_posee_producto");
 
-            Id(b => b.Id, mpa =>
+            ComponentAsId(b => b.Id, map =>
             {
-                mpa.Generator(Generators.Identity);                
-                mpa.Column("IdUsuarioPoseeProducto");
+                map.ManyToOne(b => b.Usuario, mk =>
+                {
+                    mk.Column("IdUsuario");
+                });
+
+                map.ManyToOne(b => b.Producto, mk =>
+                {
+                    mk.Column("IdProducto");
+                });
             });
 
-            //Property(b => b.Usuario, x =>
-            //{
-            //    x.Column("IdUsuario");
-            //    x.NotNullable(true);
-            //});
-
-            ManyToOne(b => b.Usuario, map =>
-            {
-                map.Column("IdUsuario");
-            });
-
-            //Property(b => b.Producto, map =>
-            //{
-            //    map.Column("IdProducto");
-            //    map.NotNullable(true);
-            //});
-
-            ManyToOne(b => b.Producto, map =>
-            {
-                map.Column("IdProducto");
-            });
 
             Property(b => b.FechaAdquisicion, mpa =>
             {
@@ -55,7 +41,23 @@ namespace GameCom.Repository.Mapping
             {
                 map.Column("Devuelto");
                 map.NotNullable(true);
-            });            
+            });
+
+            Set<LogroProductoUsuario>("logros", map =>
+            {
+                map.Access(Accessor.Field);
+                map.Lazy(CollectionLazy.Lazy);
+                map.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                map.Key(k =>
+                {
+                    k.Columns(
+                        c1 => c1.Name("IdUsuario"),
+                        c2 => c2.Name("IdProducto")
+                    );
+                    //k.ForeignKey
+                });
+            },
+            action => action.OneToMany());
         }
     }
 }

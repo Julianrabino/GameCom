@@ -45,7 +45,7 @@ namespace GameCom.Model.Entities
         public virtual void AgregarProducto(ProductoUsuario producto)
         {
             this.productos.Add(producto);
-            producto.Usuario = this;
+            producto.Id.Usuario = this;
         }
 
         public virtual void EliminarProducto(ProductoUsuario producto)

@@ -21,11 +21,14 @@ namespace GameCom.Test.Repository
         public void TestInsertProductoAUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
-            var producto = this.DbSession.Get<Producto>(1);
+            var producto = this.DbSession.Get<Producto>(5);
 
             var productoUsuario = new ProductoUsuario
             {                
-                Producto = producto,
+                Id = new IdProductoUsuario 
+                {
+                    Producto = producto
+                },
                 Devuelto = false,
                 FechaAdquisicion = DateTime.Now,
                 MinutosUso = 0
@@ -42,7 +45,7 @@ namespace GameCom.Test.Repository
         public void TestEliminarProductoAUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
-            var producto = usuario.Productos.FirstOrDefault(p => p.Id == 3);
+            var producto = usuario.Productos.FirstOrDefault();
             usuario.EliminarProducto(producto);
 
             using var tx = this.DbSession.BeginTransaction();

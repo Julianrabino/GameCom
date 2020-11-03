@@ -19,11 +19,13 @@ namespace GameCom.Repository.Mapping
                 map.ManyToOne(b => b.Producto, mk =>
                 {
                     mk.Column("IdProducto");
+                    mk.NotNullable(true);
                 });
 
                 map.Property(p => p.Codigo, mk =>
                 {
                     mk.Column("Codigo");
+                    mk.NotNullable(true);
                 });
             });
 

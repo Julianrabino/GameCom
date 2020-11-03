@@ -40,7 +40,7 @@ namespace GameCom.Repository.Mapping
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);
                 map.Cascade(Cascade.All | Cascade.DeleteOrphans);
-                //map.Inverse(true);
+                map.Inverse(true);
                 map.Key(k =>
                 {
                     k.Column("IdProducto");

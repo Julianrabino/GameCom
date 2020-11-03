@@ -1,6 +1,7 @@
 ﻿using GameCom.Model.Entities;
 using GameCom.Test.Repo.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 
 namespace GameCom.Test.Repository
@@ -110,6 +111,43 @@ namespace GameCom.Test.Repository
                 Recomendado = true,
                 Usuario = usuario
             });
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(videoJuego);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestAgregarPrecio()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var pais = this.DbSession.Get<Pais>("ARG");            
+
+            videoJuego.AgregarPrecio(new PrecioProducto
+            {
+                Pais = pais,
+                FechaAlta = DateTime.Now,
+                Valor = 50
+            });
+
+            videoJuego.AgregarPrecio(new PrecioProducto
+            {                
+                FechaAlta = DateTime.Now,
+                Valor = 100
+            });
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(videoJuego);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestEliminarPrecio()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var precio = videoJuego.Precios.Last();
+
+            videoJuego.EliminarPrecio(precio);
 
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Save(videoJuego);

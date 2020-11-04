@@ -127,7 +127,7 @@ namespace GameCom.Test.Repository
             {
                 Pais = pais,
                 FechaAlta = DateTime.Now,
-                Valor = 50
+                Valor = 30
             });
 
             videoJuego.AgregarPrecio(new PrecioProducto
@@ -152,6 +152,28 @@ namespace GameCom.Test.Repository
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Save(videoJuego);
             tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestObtenerPrecioActual()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var precioArgentina = this.DbSession
+                .QueryOver<PrecioProducto>()
+                .Where(p => p.Producto.Id == 5)
+                .Where(p => p.Pais != null && p.Pais.Id == "ARG")
+                .OrderBy(p => p.FechaAlta).Desc
+                .List().First();
+
+            var precioMundial = this.DbSession
+                .QueryOver<PrecioProducto>()
+                .Where(p => p.Producto.Id == 5)
+                .Where(p => p.Pais == null)
+                .OrderBy(p => p.FechaAlta).Desc
+                .List().First();
+
+            Assert.IsNotNull(precioArgentina);
+            Assert.IsNotNull(precioMundial);
         }
     }
 }

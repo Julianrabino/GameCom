@@ -11,11 +11,6 @@ namespace GameCom.Repository.Mapping
 
             ComponentAsId(b => b.Id, map =>
             {
-                //map.Property(p => p.Producto, mk =>
-                //{
-                //    mk.Column("IdProducto");
-                //});
-
                 map.ManyToOne(b => b.Producto, mk =>
                 {
                     mk.Column("IdProducto");

@@ -175,5 +175,23 @@ namespace GameCom.Test.Repository
             Assert.IsNotNull(precioArgentina);
             Assert.IsNotNull(precioMundial);
         }
+
+        [TestMethod]
+        public void TestAgregarOferta()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+
+            var inicioVigencia = DateTime.Now;
+            videoJuego.AgregarOferta(new OfertaProducto
+            {
+                VigenciaDesde = inicioVigencia,
+                VigenciaHasta = inicioVigencia.AddDays(7),
+                PorcentajeDescuento = 20
+            });
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Save(videoJuego);
+            tx.Commit();
+        }
     }
 }

@@ -12,11 +12,14 @@ namespace GameCom.Model.Entities
 
         protected ISet<PrecioProducto> precios;
 
+        protected ISet<OfertaProducto> ofertas;
+
         public Producto()
         {
             this.generos = new HashSet<GeneroProducto>();
             this.resenias = new HashSet<ReseniaProducto>();
             this.precios = new HashSet<PrecioProducto>();
+            this.ofertas = new HashSet<OfertaProducto>();
         }
 
         public virtual string Nombre { get; set; }
@@ -75,6 +78,25 @@ namespace GameCom.Model.Entities
         public virtual void EliminarPrecio(PrecioProducto precio)
         {
             this.precios.Remove(precio);            
+        }
+        #endregion
+
+
+        #region ofertas
+        public virtual IEnumerable<OfertaProducto> Ofertas
+        {
+            get { return this.ofertas.AsEnumerable(); }
+        }
+
+        public virtual void AgregarOferta(OfertaProducto oferta)
+        {
+            this.ofertas.Add(oferta);
+            oferta.Producto = this;
+        }
+
+        public virtual void EliminarOferta(OfertaProducto oferta)
+        {
+            this.ofertas.Remove(oferta);
         }
         #endregion
     }

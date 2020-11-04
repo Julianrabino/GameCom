@@ -14,6 +14,7 @@ namespace GameCom.Test.Repository
         public void TestGetUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
+            //var usuario2 = this.DbSession.Get<Usuario>(4);
             Assert.IsTrue(usuario.Productos.Any());
         }
 
@@ -99,7 +100,7 @@ namespace GameCom.Test.Repository
         public void TestSolicitudAmistad()
         {
             var usuario1 = this.DbSession.Get<Usuario>(1);
-            var usuario2 = this.DbSession.Get<Usuario>(3);
+            var usuario2 = this.DbSession.Get<Usuario>(4);
 
             usuario1.EnviarSolicitudAmistad(usuario2);
             
@@ -125,7 +126,7 @@ namespace GameCom.Test.Repository
         public void TestAceptarSolicitudAmistad()
         {
             var usuario1 = this.DbSession.Get<Usuario>(1);
-            var usuario2 = this.DbSession.Get<Usuario>(3);
+            var usuario2 = this.DbSession.Get<Usuario>(4);
 
             usuario2.AceptarSolicitudAmistad(usuario1);
 

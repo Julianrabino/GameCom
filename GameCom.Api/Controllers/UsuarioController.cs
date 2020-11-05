@@ -69,8 +69,8 @@ namespace GameCom.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] UsuarioDTO value)
         {
-            var entidad = this.service.Get(id);
             TryValidateModel(value);
+            var entidad = this.service.Get(id);
             TryValidateVersionable(entidad);
             this.mapper.Map<UsuarioDTO, Usuario>(value, entidad);
             this.service.Update(entidad);

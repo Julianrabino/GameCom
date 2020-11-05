@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NHibernate;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameCom.Common.NHibernate
 {

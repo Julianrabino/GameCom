@@ -1,7 +1,10 @@
-﻿using GameCom.Model.Exceptions;
+﻿using AspectCore.DynamicProxy;
+using GameCom.Common.Resources;
+using GameCom.Model.Exceptions;
 using GameCom.Repository.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using NHibernate;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -24,7 +27,7 @@ namespace GameCom.Api.Application
             try
             {
                 await next(httpContext);
-            }
+            }            
             catch (InvalidVersionException ex)
             {
                 logger.LogError($"Something went wrong: {ex}");
@@ -39,6 +42,21 @@ namespace GameCom.Api.Application
             {
                 logger.LogError($"Something went wrong: {ex}");
                 await HandleRepositoryExceptionAsync(httpContext, ex);
+            }
+            catch (AspectInvocationException ex) when (ex.InnerException is StaleObjectStateException)
+            {
+                logger.LogError($"Something went wrong: {ex}");
+                await HandleInvalidVersionExceptionAsync(httpContext, new InvalidVersionException(Mensajes._2));
+            }
+            catch (AspectInvocationException ex) when (ex.InnerException is ModelException)
+            {
+                logger.LogError($"Something went wrong: {ex}");
+                await HandleModelExceptionAsync(httpContext, new ModelException(ex.InnerException.Message));
+            }
+            catch (AspectInvocationException ex) when (ex.InnerException is RepositoryException)
+            {
+                logger.LogError($"Something went wrong: {ex}");
+                await HandleRepositoryExceptionAsync(httpContext, new RepositoryException(ex.InnerException.Message));
             }
             catch (Exception ex)
             {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using GameCom.Api.Application;
 using GameCom.Api.DTOs;
-using GameCom.Api.Resources;
 using GameCom.Common.Extensions;
+using GameCom.Common.Resources;
 using GameCom.Model.Base;
 using GameCom.Model.Entities;
 using GameCom.Service.Services;

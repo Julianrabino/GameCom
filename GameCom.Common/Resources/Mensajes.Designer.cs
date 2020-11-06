@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameCom.Api.Resources {
+namespace GameCom.Common.Resources {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace GameCom.Api.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Mensajes {
+    public class Mensajes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace GameCom.Api.Resources {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GameCom.Api.Resources.Mensajes", typeof(Mensajes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GameCom.Common.Resources.Mensajes", typeof(Mensajes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace GameCom.Api.Resources {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,16 @@ namespace GameCom.Api.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a Debe indicar el campo versión dentro de los headers HTTP.
         /// </summary>
-        internal static string _1 {
+        public static string _1 {
             get {
                 return ResourceManager.GetString("1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Está operando con información desactualizada.
+        ///   Busca una cadena traducida similar a La versión de la entidad que desea modificar está desactualizada.
         /// </summary>
-        internal static string _2 {
+        public static string _2 {
             get {
                 return ResourceManager.GetString("2", resourceCulture);
             }

@@ -11,4 +11,19 @@
     <PackageReference Include="NHibernate" Version="5.3.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\Mensajes.Designer.cs">
+      <DependentUpon>Mensajes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Mensajes.resx">
+      <LastGenOutput>Mensajes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

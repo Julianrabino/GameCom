@@ -121,6 +121,6 @@
     <value>Debe indicar el campo versión dentro de los headers HTTP</value>
   </data>
   <data name="2" xml:space="preserve">
-    <value>Está operando con información desactualizada</value>
+    <value>La versión de la entidad que desea modificar está desactualizada</value>
   </data>
 </root>

@@ -29,20 +29,5 @@
     <ProjectReference Include="..\GameCom.Service\GameCom.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Resources\Mensajes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Mensajes.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Mensajes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Mensajes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
 
 </Project>

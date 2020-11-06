@@ -29,8 +29,7 @@ namespace GameCom.Api.Application
             var sessionFactory = configuration.BuildSessionFactory();
 
             services.AddSingleton(sessionFactory);
-            services.AddScoped(factory => sessionFactory.OpenSession());
-            //services.AddScoped<IMapperSession, NHibernateMapperSession>();
+            services.AddScoped(factory => sessionFactory.OpenSession());            
 
             return services;
         }

@@ -3,6 +3,9 @@ using NHibernate;
 
 namespace GameCom.Common.NHibernate
 {
+    /// <summary>
+    /// Implementación del logger factory de NHibernate
+    /// </summary>
     public class NHLoggerFactory : INHibernateLoggerFactory
     {
         private readonly ILogger _appLogger;

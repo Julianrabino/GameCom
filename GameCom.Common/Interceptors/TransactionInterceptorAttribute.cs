@@ -10,7 +10,7 @@ namespace GameCom.Common.Interceptors
         public async override Task Invoke(AspectContext context, AspectDelegate next)
         {
             var dbSession = context.ServiceProvider.GetService(typeof(ISession)) as ISession;
-            //First determine whether the transaction has been enabled
+                        
             if (dbSession != null && dbSession.GetCurrentTransaction() == null)
             {
                 using (var transaction = dbSession.BeginTransaction())

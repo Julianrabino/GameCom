@@ -26,8 +26,6 @@ namespace GameCom.Api
             var connStr = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddNHibernate(connStr);
-            services.AddTransient<ProductTypeService>();
-            services.AddTransient<ProductTypeRepository>();
             services.AddTransient<UsuarioService>();
             services.AddTransient<UsuarioRepository>();
 

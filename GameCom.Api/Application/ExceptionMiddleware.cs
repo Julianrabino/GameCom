@@ -14,11 +14,9 @@ namespace GameCom.Api.Application
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate next;
-        private readonly ILogger<ExceptionMiddleware> logger;
 
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
-            this.logger = logger;
             this.next = next;
         }
 
@@ -30,37 +28,30 @@ namespace GameCom.Api.Application
             }            
             catch (InvalidVersionException ex)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleInvalidVersionExceptionAsync(httpContext, ex);
             }
             catch (ModelException ex)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleModelExceptionAsync(httpContext, ex);
             }
             catch (RepositoryException ex)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleRepositoryExceptionAsync(httpContext, ex);
             }
             catch (AspectInvocationException ex) when (ex.InnerException is StaleObjectStateException)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleInvalidVersionExceptionAsync(httpContext, new InvalidVersionException(Mensajes._2));
             }
             catch (AspectInvocationException ex) when (ex.InnerException is ModelException)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleModelExceptionAsync(httpContext, new ModelException(ex.InnerException.Message));
             }
             catch (AspectInvocationException ex) when (ex.InnerException is RepositoryException)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleRepositoryExceptionAsync(httpContext, new RepositoryException(ex.InnerException.Message));
             }
             catch (Exception ex)
             {
-                logger.LogError($"Something went wrong: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }

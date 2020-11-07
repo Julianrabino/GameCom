@@ -1,15 +1,14 @@
 ﻿using GameCom.Model.Base;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GameCom.Model.Entities
 {
     public class Usuario : EntityBase<int>, IVersionable
     {
-        protected ISet<ProductoUsuario> productos;
+        protected ICollection<ProductoUsuario> productos;
 
+        //Estas colecciones de amistades se mantienen como conjunto sin repetición porque tener duplicados puede generar problemas de lógica de negocio
         protected ISet<Usuario> solicitudesAmistadEnviadas;
 
         protected ISet<Usuario> solicitudesAmistadRecibidas;
@@ -19,7 +18,7 @@ namespace GameCom.Model.Entities
 
         public Usuario()
         {
-            this.productos = new HashSet<ProductoUsuario>();
+            this.productos = new List<ProductoUsuario>();
             this.solicitudesAmistadEnviadas = new HashSet<Usuario>();
             this.solicitudesAmistadRecibidas = new HashSet<Usuario>();
             this.amistades = new HashSet<Usuario>();

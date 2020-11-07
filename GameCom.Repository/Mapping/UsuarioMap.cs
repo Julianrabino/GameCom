@@ -77,7 +77,7 @@ namespace GameCom.Repository.Mapping
                 map.NotNullable(true);
             });
 
-            Set<ProductoUsuario>("productos", map =>
+            Bag<ProductoUsuario>("productos", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);

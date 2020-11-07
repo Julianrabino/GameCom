@@ -10,16 +10,16 @@ namespace GameCom.Model.Entities
 
         protected ISet<ReseniaProducto> resenias;
 
-        protected ISet<PrecioProducto> precios;
+        protected ICollection<PrecioProducto> precios;
 
-        protected ISet<OfertaProducto> ofertas;
+        protected ICollection<OfertaProducto> ofertas;
 
         public Producto()
         {
             this.generos = new HashSet<GeneroProducto>();
             this.resenias = new HashSet<ReseniaProducto>();
-            this.precios = new HashSet<PrecioProducto>();
-            this.ofertas = new HashSet<OfertaProducto>();
+            this.precios = new List<PrecioProducto>();
+            this.ofertas = new List<OfertaProducto>();
         }
 
         public virtual string Nombre { get; set; }
@@ -80,7 +80,6 @@ namespace GameCom.Model.Entities
             this.precios.Remove(precio);            
         }
         #endregion
-
 
         #region ofertas
         public virtual IEnumerable<OfertaProducto> Ofertas

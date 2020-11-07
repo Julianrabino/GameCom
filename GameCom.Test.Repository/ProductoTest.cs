@@ -86,9 +86,9 @@ namespace GameCom.Test.Repository
         public void TestInsertLogroVideoJuego()
         {
             var videoJuego = this.DbSession.Get<VideoJuego>(5);
-            videoJuego.AgregaraLogro(new LogroProducto("001")
+            videoJuego.AgregaraLogro(new LogroProducto("002")
             {
-                Descripcion = "Primer Vuelo"
+                Descripcion = "Segundo Vuelo"
             });
 
             using var tx = this.DbSession.BeginTransaction();
@@ -127,13 +127,13 @@ namespace GameCom.Test.Repository
             {
                 Pais = pais,
                 FechaAlta = DateTime.Now,
-                Valor = 30
+                Valor = 40
             });
 
             videoJuego.AgregarPrecio(new PrecioProducto
             {                
                 FechaAlta = DateTime.Now,
-                Valor = 100
+                Valor = 110
             });
 
             using var tx = this.DbSession.BeginTransaction();
@@ -182,12 +182,16 @@ namespace GameCom.Test.Repository
             var videoJuego = this.DbSession.Get<VideoJuego>(5);
 
             var inicioVigencia = DateTime.Now;
-            videoJuego.AgregarOferta(new OfertaProducto
+            var nuevaOfeta = new OfertaProducto
             {
                 VigenciaDesde = inicioVigencia,
                 VigenciaHasta = inicioVigencia.AddDays(7),
                 PorcentajeDescuento = 20
-            });
+            };
+
+            videoJuego.AgregarOferta(nuevaOfeta);
+            //Prueba de duplicidad: Agrega dos veces la misma oferta pero se persiste una vez sola 
+            videoJuego.AgregarOferta(nuevaOfeta);
 
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Save(videoJuego);

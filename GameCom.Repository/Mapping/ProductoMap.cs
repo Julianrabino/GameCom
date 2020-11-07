@@ -60,7 +60,7 @@ namespace GameCom.Repository.Mapping
             },
             action => action.OneToMany());
 
-            Set<PrecioProducto>("precios", map =>
+            Bag<PrecioProducto>("precios", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);
@@ -73,7 +73,7 @@ namespace GameCom.Repository.Mapping
             },
             action => action.OneToMany());
 
-            Set<OfertaProducto>("ofertas", map =>
+            Bag<OfertaProducto>("ofertas", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);

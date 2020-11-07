@@ -5,11 +5,11 @@ namespace GameCom.Model.Entities
 {
     public class VideoJuego: Producto
     {
-        private ISet<LogroProducto> logros;
+        private ICollection<LogroProducto> logros;
 
         public VideoJuego(): base()
         {
-            this.logros = new HashSet<LogroProducto>();
+            this.logros = new List<LogroProducto>();
         }
 
         public virtual string Desarroladora { get; set; }

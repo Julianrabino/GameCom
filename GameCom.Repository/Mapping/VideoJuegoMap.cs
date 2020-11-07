@@ -35,7 +35,7 @@ namespace GameCom.Repository.Mapping
                 map.Column("RequerimientosRecomendados");
             });
 
-            Set<LogroProducto>("logros", map =>
+            Bag<LogroProducto>("logros", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);

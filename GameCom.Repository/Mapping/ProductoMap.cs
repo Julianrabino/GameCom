@@ -34,7 +34,7 @@ namespace GameCom.Repository.Mapping
                 map.Column("Descripcion");
             });
 
-            Set<GeneroProducto>("generos", map =>
+            Bag<GeneroProducto>("generos", map =>
             {
                 map.Table("producto_genero");
                 map.Access(Accessor.Field);
@@ -47,7 +47,7 @@ namespace GameCom.Repository.Mapping
             },
             action => action.ManyToMany(k => k.Column("CodigoGenero")));
 
-            Set<ReseniaProducto>("resenias", map =>
+            Bag<ReseniaProducto>("resenias", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);

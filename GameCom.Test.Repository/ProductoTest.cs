@@ -83,6 +83,19 @@ namespace GameCom.Test.Repository
         }
 
         [TestMethod]
+        public void TestEliminarGenero()
+        {
+            var videoJuego = this.DbSession.Get<VideoJuego>(5);
+            var genero = this.DbSession.Get<GeneroProducto>("VSIM");
+
+            videoJuego.EliminarGenero(genero);
+
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Update(videoJuego);
+            tx.Commit();
+        }
+
+        [TestMethod]
         public void TestInsertLogroVideoJuego()
         {
             var videoJuego = this.DbSession.Get<VideoJuego>(5);

@@ -6,9 +6,9 @@ namespace GameCom.Model.Entities
 {
     public class Producto: EntityBase<int>, IVersionable
     {
-        protected ISet<GeneroProducto> generos;
+        protected ICollection<GeneroProducto> generos;
 
-        protected ISet<ReseniaProducto> resenias;
+        protected ICollection<ReseniaProducto> resenias;
 
         protected ICollection<PrecioProducto> precios;
 
@@ -16,8 +16,8 @@ namespace GameCom.Model.Entities
 
         public Producto()
         {
-            this.generos = new HashSet<GeneroProducto>();
-            this.resenias = new HashSet<ReseniaProducto>();
+            this.generos = new List<GeneroProducto>();
+            this.resenias = new List<ReseniaProducto>();
             this.precios = new List<PrecioProducto>();
             this.ofertas = new List<OfertaProducto>();
         }

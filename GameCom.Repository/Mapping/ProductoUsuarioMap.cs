@@ -44,11 +44,12 @@ namespace GameCom.Repository.Mapping
                 map.NotNullable(true);
             });
 
-            Set<LogroProductoUsuario>("logros", map =>
+            Bag<LogroProductoUsuario>("logros", map =>
             {
                 map.Access(Accessor.Field);
                 map.Lazy(CollectionLazy.Lazy);
                 map.Cascade(Cascade.All | Cascade.DeleteOrphans);
+                map.Inverse(true);
                 map.Key(k =>
                 {
                     k.Columns(

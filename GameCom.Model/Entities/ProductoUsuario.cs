@@ -7,12 +7,12 @@ namespace GameCom.Model.Entities
 {
     public class ProductoUsuario : EntityBase<IdProductoUsuario>
     {
-        private ISet<LogroProductoUsuario> logros;
+        private ICollection<LogroProductoUsuario> logros;
 
         public ProductoUsuario()
         {
             this.Id = new IdProductoUsuario();
-            this.logros = new HashSet<LogroProductoUsuario>();
+            this.logros = new List<LogroProductoUsuario>();
         }
 
         #region indirecciones a ID
@@ -41,10 +41,10 @@ namespace GameCom.Model.Entities
             get { return this.logros.AsEnumerable(); }
         }
 
-        public virtual void AgregarLogro(LogroProductoUsuario logro)
+        public virtual void AgregarLogro(LogroProductoUsuario logroProducto)
         {            
-            this.logros.Add(logro);
-            logro.Usuario = this.Usuario;
+            this.logros.Add(logroProducto);
+            logroProducto.Usuario = this.Usuario;
         }
 
         public virtual void EliminarLogro(LogroProductoUsuario logro)

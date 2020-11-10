@@ -17,7 +17,8 @@ namespace Stock.Api.MapperProfiles
                 .ForMember(t => t.FechaNacimiento, opt => opt.MapFrom(s => s.DatosPersonales.FechaNacimiento))
                 .ForMember(t => t.Telefono, opt => opt.MapFrom(s => s.DatosPersonales.Telefono))
                 .ReverseMap()
-                .ForMember(s => s.Id, opt => opt.Ignore());
+                .ForMember(s => s.Id, opt => opt.Ignore())
+                .ForMember(s => s.Version, opt => opt.Ignore());
         }
     }
 

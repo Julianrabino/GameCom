@@ -61,7 +61,7 @@ namespace GameCom.Common.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Debe indicar el campo versión dentro de los headers HTTP.
+        ///   Busca una cadena traducida similar a Debe indicar el campo versión dentro de los headers HTTP (If-Match).
         /// </summary>
         public static string _1 {
             get {

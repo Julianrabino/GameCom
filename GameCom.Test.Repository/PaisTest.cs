@@ -22,7 +22,7 @@ namespace GameCom.Test.Repository
         }
 
         [TestMethod]
-        public void TestUpdatePelicula()
+        public void TestUpdatePais()
         {
             var be = this.DbSession.Get<Pais>("ARG");
             be.Descripcion += " ED";

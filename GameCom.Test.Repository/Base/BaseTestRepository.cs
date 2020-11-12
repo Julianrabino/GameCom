@@ -44,8 +44,11 @@ namespace GameCom.Test.Repo.Base
                 c.ConnectionString = connectionString;
                 //c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 //c.SchemaAction = SchemaAutoAction.Validate;
-                c.LogFormattedSql = true;
-                c.LogSqlInConsole = true;
+                #if (DEBUG)
+                    c.LogFormattedSql = true;
+                    c.LogSqlInConsole = true;
+                #endif
+
             });
 
             configuration.AddMapping(domainMapping);
@@ -54,10 +57,9 @@ namespace GameCom.Test.Repo.Base
 
             this.DbSession = sessionFactory.OpenSession();
 
-            //var loggerFactory = this.GetRequiredService<ILoggerFactory>();
-            //this.Logger = loggerFactory.CreateLogger<BaseTestRepository>();
-            
-            NHibernateLogger.SetLoggersFactory(new NHLoggerFactory(this.Log));
+            #if (DEBUG)
+                NHibernateLogger.SetLoggersFactory(new NHLoggerFactory(this.Log));
+            #endif
         }
 
         protected override void ConfigureLogging(ILoggingBuilder builder)
@@ -67,14 +69,5 @@ namespace GameCom.Test.Repo.Base
             // Add additional loggers or configuration
             builder.AddDebug().AddFilter(logLevel => true);            
         }
-
-        protected override void ConfigureServices(IServiceCollection services)
-        {
-            base.ConfigureServices(services);
-
-            // Configure your services here
-            // services.AddSingleton<IMyService, MyService>();
-        }
-
     }
 }

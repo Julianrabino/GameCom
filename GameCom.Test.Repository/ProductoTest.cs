@@ -46,10 +46,22 @@ namespace GameCom.Test.Repository
         [TestMethod]
         public void TestDeletePelicula()
         {
-            var pelicula = this.DbSession.Get<Pelicula>(3);            
-            using var tx = this.DbSession.BeginTransaction();
+            var pelicula = new Pelicula
+            {
+                Nombre = "Pelicula a borrar",
+                Descripcion = "Pelicula a borrar",
+                Resenia = "Pelicula a borrar",
+                Productora = "Warner",
+                DuracionMinutos = 115
+            };
+
+            using var tx1 = this.DbSession.BeginTransaction();
+            this.DbSession.Save(pelicula);
+            tx1.Commit();
+            
+            using var tx2 = this.DbSession.BeginTransaction();
             this.DbSession.Delete(pelicula);
-            tx.Commit();
+            tx2.Commit();
         }
 
         [TestMethod]

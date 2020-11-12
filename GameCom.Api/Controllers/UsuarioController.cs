@@ -54,11 +54,13 @@ namespace GameCom.Api.Controllers
         /// Permite crear una nueva instancia
         /// </summary>
         /// <param name="value">Una instancia</param>
+        /// <returns>La instancia generada</returns>
         [HttpPost]
-        public void Post([FromBody] UsuarioDTO value)
+        public ActionResult<UsuarioDTO> Post([FromBody] UsuarioDTO value)
         {
             TryValidateModel(value);
-            this.service.Create(this.mapper.Map<Usuario>(value));
+            var entidadGenerada = this.service.Create(this.mapper.Map<Usuario>(value));
+            return this.mapper.Map<UsuarioDTO>(entidadGenerada);
         }
 
         /// <summary>
@@ -84,6 +86,7 @@ namespace GameCom.Api.Controllers
         public void Delete(int id)
         {
             var entidad = this.service.Get(id);
+            TryValidateVersionable(entidad);
             this.service.Delete(entidad);
         }
 

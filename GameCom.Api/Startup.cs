@@ -38,11 +38,6 @@ namespace GameCom.Api
                 //Take the controller as a service
                 .AddControllersAsServices();
 
-            //services.ConfigureDynamicProxy(o =>
-            //{
-            //    //Add AOP configuration
-            //});
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCom API", Version = "1", Description = "GameCom API v1" });

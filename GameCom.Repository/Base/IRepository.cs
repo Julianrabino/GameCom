@@ -16,7 +16,5 @@ namespace GameCom.Repository.Base
         TEntity Create(TEntity entity);
 
         TEntity Update(TEntity entity);
-
-        
     }
 }

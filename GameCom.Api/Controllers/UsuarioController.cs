@@ -17,8 +17,6 @@ namespace GameCom.Api.Controllers
     [Produces("application/json")]
     public class UsuarioController : ControllerBase
     {
-        //private readonly ILogger<UsuarioController> _logger;
-
         private readonly UsuarioService service;
 
         private readonly IMapper mapper;

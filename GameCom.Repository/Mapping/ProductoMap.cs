@@ -11,10 +11,10 @@ namespace GameCom.Repository.Mapping
             Table("producto");
 
             Id(b => b.Id, map =>
-                {
-                    map.Generator(Generators.Identity);
-                    map.Column("IdProducto");
-                });
+            {
+                map.Generator(Generators.Identity);
+                map.Column("IdProducto");
+            });
 
             Version(b => b.Version, map =>
             {

@@ -13,10 +13,10 @@ namespace GameCom.Repository.Mapping
             Table("genero");
 
             Id(b => b.Id, map =>
-                {
-                    map.Generator(Generators.Assigned);
-                    map.Column("CodigoGenero");
-                });            
+            {
+                map.Generator(Generators.Assigned);
+                map.Column("CodigoGenero");
+            });            
 
             Property(b => b.Descripcion, map =>
             {

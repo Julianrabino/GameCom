@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameCom.Model.Entities
+﻿namespace GameCom.Model.Entities
 {
     public class Pelicula: Producto
     {
@@ -10,6 +6,6 @@ namespace GameCom.Model.Entities
 
         public virtual string Resenia { get; set; }
 
-        public virtual int DuracionMinutos { get; set; }
+        public virtual int? DuracionMinutos { get; set; }
     }
 }

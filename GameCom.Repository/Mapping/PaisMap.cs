@@ -11,10 +11,10 @@ namespace GameCom.Repository.Mapping
             Table("pais");
 
             Id(b => b.Id, map =>
-                {
-                    map.Generator(Generators.Assigned);
-                    map.Column("Codigo");
-                });            
+            {
+                map.Generator(Generators.Assigned);
+                map.Column("Codigo");
+            });            
 
             Property(b => b.Descripcion, map =>
             {

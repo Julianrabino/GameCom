@@ -11,10 +11,10 @@ namespace GameCom.Repository.Mapping
             Table("precio_producto");
 
             Id(b => b.Id, map =>
-                {
-                    map.Generator(Generators.Identity);
-                    map.Column("IdPrecioProducto");
-                });
+            {
+                map.Generator(Generators.Identity);
+                map.Column("IdPrecioProducto");
+            });
 
             ManyToOne(b => b.Producto, mk =>
             {

@@ -21,6 +21,7 @@ namespace GameCom.Repository.Mapping
             ManyToOne(b => b.Usuario, map =>
             {
                 map.Column("IdUsuario");
+                map.NotNullable(true);
             });
 
             ManyToOne(b => b.Logro, map =>
@@ -28,9 +29,11 @@ namespace GameCom.Repository.Mapping
                 map.Columns(c1 =>
                 {
                     c1.Name("IdProducto");
+                    c1.NotNullable(true);
                 }, c2 =>
                 {
                     c2.Name("CodigoLogro");
+                    c2.NotNullable(true);
                 });
                 
             });

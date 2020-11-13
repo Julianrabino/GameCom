@@ -51,8 +51,7 @@ namespace GameCom.Test.Repository
                 Nombre = "Pelicula a borrar",
                 Descripcion = "Pelicula a borrar",
                 Resenia = "Pelicula a borrar",
-                Productora = "Warner",
-                DuracionMinutos = 115
+                Productora = "Warner"                
             };
 
             using var tx1 = this.DbSession.BeginTransaction();

@@ -5,6 +5,7 @@ using GameCom.Common.Extensions;
 using GameCom.Common.Resources;
 using GameCom.Model.Base;
 using GameCom.Model.Entities;
+using GameCom.Service.Base;
 using GameCom.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -19,11 +20,11 @@ namespace GameCom.Api.Controllers
     {
         private readonly IUsuarioService usuarioService;
 
-        private readonly IProductoService productoService;
+        private readonly IService<Producto, int> productoService;
 
         private readonly IMapper mapper;
 
-        public UsuarioController(IUsuarioService service, IProductoService productoService, IMapper mapper)
+        public UsuarioController(IUsuarioService service, IService<Producto, int> productoService, IMapper mapper)
         {
             this.usuarioService = service;
             this.productoService = productoService;

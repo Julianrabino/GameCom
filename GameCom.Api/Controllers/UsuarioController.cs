@@ -5,7 +5,7 @@ using GameCom.Common.Extensions;
 using GameCom.Common.Resources;
 using GameCom.Model.Base;
 using GameCom.Model.Entities;
-using GameCom.Service.Services;
+using GameCom.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +17,16 @@ namespace GameCom.Api.Controllers
     [Produces("application/json")]
     public class UsuarioController : ControllerBase
     {
-        private readonly UsuarioService service;
+        private readonly IUsuarioService usuarioService;
+
+        private readonly IProductoService productoService;
 
         private readonly IMapper mapper;
 
-        public UsuarioController(UsuarioService service, IMapper mapper)
+        public UsuarioController(IUsuarioService service, IProductoService productoService, IMapper mapper)
         {
-            this.service = service;
+            this.usuarioService = service;
+            this.productoService = productoService;
             this.mapper = mapper;
         }
 
@@ -34,7 +37,7 @@ namespace GameCom.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<UsuarioDTO>> Get()
         {
-            return this.mapper.Map<IEnumerable<UsuarioDTO>>(this.service.GetAll()).ToList();
+            return this.mapper.Map<IEnumerable<UsuarioDTO>>(this.usuarioService.GetAll()).ToList();
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace GameCom.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<UsuarioDTO> Get(int id)
         {
-            return this.mapper.Map<UsuarioDTO>(this.service.Get(id));
+            return this.mapper.Map<UsuarioDTO>(this.usuarioService.Get(id));
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace GameCom.Api.Controllers
         public ActionResult<UsuarioDTO> Post([FromBody] UsuarioDTO value)
         {
             TryValidateModel(value);
-            var entidadGenerada = this.service.Create(this.mapper.Map<Usuario>(value));
+            var entidadGenerada = this.usuarioService.Create(this.mapper.Map<Usuario>(value));
             return this.mapper.Map<UsuarioDTO>(entidadGenerada);
         }
 
@@ -70,10 +73,10 @@ namespace GameCom.Api.Controllers
         public void Put(int id, [FromBody] UsuarioDTO value)
         {
             TryValidateModel(value);
-            var entidad = this.service.Get(id);
+            var entidad = this.usuarioService.Get(id);
             TryValidateVersionable(entidad);
             this.mapper.Map<UsuarioDTO, Usuario>(value, entidad);
-            this.service.Update(entidad);
+            this.usuarioService.Update(entidad);
         }
 
         /// <summary>
@@ -83,9 +86,25 @@ namespace GameCom.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var entidad = this.service.Get(id);
+            var entidad = this.usuarioService.Get(id);
             TryValidateVersionable(entidad);
-            this.service.Delete(entidad);
+            this.usuarioService.Delete(entidad);
+        }
+
+
+        /// <summary>
+        /// Permite agregar un producto a un usuario
+        /// </summary>
+        /// <param name="idUsuario">Identificador del usuario</param>
+        /// <param name="IdProducto">Identificador del producto</param>
+        [HttpPut("agregarProducto/{idUsuario}/{idProducto}")]
+        public void Put(int idUsuario, int IdProducto)
+        {
+            var usuario = this.usuarioService.Get(idUsuario);
+            TryValidateVersionable(usuario);
+            var producto = this.productoService.Get(IdProducto);
+            this.usuarioService.AgregarProducto(usuario, producto);
+            this.usuarioService.Update(usuario);
         }
 
         private void TryValidateVersionable(object entidad)

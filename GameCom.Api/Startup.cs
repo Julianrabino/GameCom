@@ -2,6 +2,7 @@ using AutoMapper;
 using GameCom.Api.Application;
 using GameCom.Repository.Repositories;
 using GameCom.Service.Services;
+using GameCom.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,8 +30,10 @@ namespace GameCom.Api
             var connStr = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddNHibernate(connStr);
-            services.AddTransient<UsuarioService>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<UsuarioRepository>();
+            services.AddTransient<IProductoService, ProductoService>();
+            services.AddTransient<ProductoRepository>();
 
             services.AddAutoMapper(typeof(Startup));
 

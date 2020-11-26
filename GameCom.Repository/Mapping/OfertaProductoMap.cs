@@ -1,8 +1,6 @@
 ﻿using GameCom.Model.Entities;
-using GameCom.Model.Entities.Enums;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using NHibernate.Type;
 
 namespace GameCom.Repository.Mapping
 {

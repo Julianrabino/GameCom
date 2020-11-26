@@ -1,11 +1,6 @@
 ﻿using GameCom.Model.Entities;
-using NHibernate;
-using NHibernate.Mapping;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameCom.Repository.Mapping
 {

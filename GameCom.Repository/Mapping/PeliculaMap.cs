@@ -1,8 +1,5 @@
 ﻿using GameCom.Model.Entities;
 using NHibernate.Mapping.ByCode.Conformist;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameCom.Repository.Mapping
 {
@@ -18,7 +15,6 @@ namespace GameCom.Repository.Mapping
             Property(b => b.Productora, map =>
             {
                 map.Length(100);
-                //x.Type(NHibernateUtil.String);
                 map.Column("Productora");
                 map.NotNullable(true);
             });

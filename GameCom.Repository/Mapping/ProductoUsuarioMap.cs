@@ -1,5 +1,4 @@
 ﻿using GameCom.Model.Entities;
-using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
@@ -56,7 +55,6 @@ namespace GameCom.Repository.Mapping
                         c1 => c1.Name("IdUsuario"),
                         c2 => c2.Name("IdProducto")
                     );
-                    //k.ForeignKey
                 });
             },
             action => action.OneToMany());

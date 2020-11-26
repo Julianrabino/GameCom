@@ -56,20 +56,6 @@ namespace GameCom.Repository.Mapping
                 });
             });
 
-            //Property(b => b.Nombre, map =>
-            //{
-            //    map.Length(100);
-            //    map.Column("Nombre");
-            //    map.NotNullable(true);
-            //});
-
-            //Property(b => b.Apellido, map =>
-            //{
-            //    map.Length(100);
-            //    map.Column("Apellido");
-            //    map.NotNullable(true);
-            //});
-
             Property(b => b.Alias, map =>
             {
                 map.Length(100);

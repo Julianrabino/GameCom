@@ -85,11 +85,6 @@ namespace GameCom.Repository.Mapping
                 });
             },
             action => action.OneToMany());
-
-            //Discriminator(x =>
-            //{
-            //    x.Column("TipoProducto");
-            //});
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using GameCom.Model.Entities;
-using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using System.Security.Cryptography;
 
 namespace GameCom.Repository.Mapping
 {

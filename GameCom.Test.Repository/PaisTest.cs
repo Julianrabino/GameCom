@@ -12,8 +12,8 @@ namespace GameCom.Test.Repository
         {
             var be = new Pais
             {
-                Id = "ARG",
-                Descripcion = "Argentina",                
+                Id = "CHL",
+                Descripcion = "Chile",                
             };
 
             using var tx = this.DbSession.BeginTransaction();
@@ -28,6 +28,15 @@ namespace GameCom.Test.Repository
             be.Descripcion += " ED";
             using var tx = this.DbSession.BeginTransaction();
             this.DbSession.Update(be);
+            tx.Commit();
+        }
+
+        [TestMethod]
+        public void TestDeletePais()
+        {
+            var be = this.DbSession.Get<Pais>("CHL");
+            using var tx = this.DbSession.BeginTransaction();
+            this.DbSession.Delete(be);
             tx.Commit();
         }
     }

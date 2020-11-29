@@ -1,5 +1,4 @@
 ﻿using GameCom.Model.Base;
-using GameCom.Model.Entities.Enums;
 
 namespace GameCom.Model.Entities
 {

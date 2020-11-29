@@ -81,6 +81,27 @@ namespace GameCom.Test.Repository
         }
 
         [TestMethod]
+        public void TestDeleteVideoJuego()
+        {
+            var entidad = new VideoJuego
+            {
+                Nombre = "Rocket League",
+                Descripcion = "Autitos, cohetes y fútbol",
+                Desarroladora = "Psyonix",
+                RequerimientosMinimos = "Una PC ordinaria",
+                RequerimientosRecomendados = "Una buena PC"
+            };
+
+            using var tx1 = this.DbSession.BeginTransaction();
+            this.DbSession.Save(entidad);
+            tx1.Commit();
+
+            using var tx2 = this.DbSession.BeginTransaction();
+            this.DbSession.Delete(entidad);
+            tx2.Commit();
+        }
+
+        [TestMethod]
         public void TestAgregarGenero()
         {
             var videoJuego = this.DbSession.Get<VideoJuego>(5);

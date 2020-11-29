@@ -14,7 +14,6 @@ namespace GameCom.Test.Repository
         public void TestGetUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
-            //var usuario2 = this.DbSession.Get<Usuario>(4);
             Assert.IsTrue(usuario.Productos.Any());
         }
 

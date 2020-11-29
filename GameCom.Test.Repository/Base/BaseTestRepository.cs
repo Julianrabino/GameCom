@@ -2,7 +2,6 @@
 using GameCom.Common.NHibernate;
 using GameCom.Repository.Mapping;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;

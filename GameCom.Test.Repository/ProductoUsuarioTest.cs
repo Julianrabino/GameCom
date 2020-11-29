@@ -16,7 +16,6 @@ namespace GameCom.Test.Repository
         {
             var usuario = this.DbSession.Get<Usuario>(1);
             var juegoUsuario = usuario.Productos.Where(p => (p.Producto is VideoJuego) && (p.Producto as VideoJuego).Nombre == "Flight Simualtor").First();
-            //var juegoUsuario = usuario.Productos.Where(p => p.Producto.Id == 5).First();
             var segundoLogro = (juegoUsuario.Producto as VideoJuego).Logros.First(l => l.Codigo == "002");
             juegoUsuario.AgregarLogro(new LogroProductoUsuario
             {
@@ -34,8 +33,7 @@ namespace GameCom.Test.Repository
         public void TestEliminarLogroVideoJuegoAUsuario()
         {
             var usuario = this.DbSession.Get<Usuario>(1);
-            var juegoUsuario = usuario.Productos.Where(p => (p.Producto is VideoJuego) && (p.Producto as VideoJuego).Nombre == "Flight Simualtor").First();
-            //var juegoUsuario = usuario.Productos.Where(p => p.Producto.Id == 5).First();
+            var juegoUsuario = usuario.Productos.Where(p => (p.Producto is VideoJuego) && (p.Producto as VideoJuego).Nombre == "Flight Simualtor").First();            
             var ultimoLogro = juegoUsuario.Logros.Last(l => l.Logro.Codigo == "002");
             juegoUsuario.EliminarLogro(ultimoLogro);
 

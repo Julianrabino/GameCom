@@ -19,10 +19,6 @@ namespace GameCom.Api.Application
             {
                 c.Dialect<NHibernate.Dialect.MySQLDialect>();
                 c.ConnectionString = connectionString;
-                //c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-                //c.SchemaAction = SchemaAutoAction.Validate;
-                //c.LogFormattedSql = true;
-                //c.LogSqlInConsole = true;
             });
             configuration.AddMapping(domainMapping);
 

@@ -117,7 +117,7 @@ CREATE TABLE `pais` (
 
 LOCK TABLES `pais` WRITE;
 /*!40000 ALTER TABLE `pais` DISABLE KEYS */;
-REPLACE INTO `pais` (`Codigo`, `Descripcion`) VALUES ('ARG','Argentina ED');
+REPLACE INTO `pais` (`Codigo`, `Descripcion`) VALUES ('ARG','Argentina ED ED ED ED ED ED'),('CHL','Chile');
 /*!40000 ALTER TABLE `pais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +193,7 @@ CREATE TABLE `producto` (
   `Version` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`IdProducto`),
   UNIQUE KEY `Nombre_UNIQUE` (`Nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +285,7 @@ CREATE TABLE `usuario` (
   `Telefono` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdUsuario`),
   UNIQUE KEY `NombreUsuario_UNIQUE` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +294,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-REPLACE INTO `usuario` (`IdUsuario`, `Email`, `Nombre`, `Apellido`, `Alias`, `Version`, `FechaNacimiento`, `Telefono`) VALUES (1,'Julianrabino@gmail.com','Julián César','Rabino','Joncito V',28,'1984-03-20 00:00:00',NULL),(3,'JulianCesar18@hotmail.com','Julian','Rabino','Joncito',8,NULL,NULL),(4,'Josesucho@hotmail.com','José','Suarez','Josego',4,NULL,NULL);
+REPLACE INTO `usuario` (`IdUsuario`, `Email`, `Nombre`, `Apellido`, `Alias`, `Version`, `FechaNacimiento`, `Telefono`) VALUES (1,'Julianrabino@gmail.com','Julián César','Rabino','Joncito V',28,'1984-03-20 00:00:00',NULL),(3,'JulianCesar18@hotmail.com','Julian','Rabino','Joncito',8,NULL,NULL),(4,'Josesucho@hotmail.com','José','Suarez','Josego',7,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,7 +352,7 @@ CREATE TABLE `usuario_posee_producto` (
 
 LOCK TABLES `usuario_posee_producto` WRITE;
 /*!40000 ALTER TABLE `usuario_posee_producto` DISABLE KEYS */;
-REPLACE INTO `usuario_posee_producto` (`IdUsuario`, `IdProducto`, `FechaAdquisicion`, `TiempoUsoMinutos`, `Devuelto`) VALUES (1,1,'2020-10-25 21:31:23',60,1),(1,5,'2020-11-07 20:19:12',0,0),(4,5,'2020-11-04 19:36:38',0,0);
+REPLACE INTO `usuario_posee_producto` (`IdUsuario`, `IdProducto`, `FechaAdquisicion`, `TiempoUsoMinutos`, `Devuelto`) VALUES (1,1,'2020-10-25 21:31:23',60,1),(1,5,'2020-11-07 20:19:12',0,0),(4,1,'2020-11-17 01:47:11',0,0),(4,4,'2020-11-17 02:04:55',0,0),(4,5,'2020-11-04 19:36:38',0,0);
 /*!40000 ALTER TABLE `usuario_posee_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +375,7 @@ CREATE TABLE `usuario_producto_logro` (
   KEY `FK_Usuario_producto_logro_ProductoLogro_idx` (`IdProducto`,`CodigoLogro`) /*!80000 INVISIBLE */,
   CONSTRAINT `FK_Usuario_producto_logro_IdUsuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`),
   CONSTRAINT `FK_Usuario_producto_logro_ProductoLogro` FOREIGN KEY (`IdProducto`, `CodigoLogro`) REFERENCES `logro` (`IdProducto`, `Codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +384,7 @@ CREATE TABLE `usuario_producto_logro` (
 
 LOCK TABLES `usuario_producto_logro` WRITE;
 /*!40000 ALTER TABLE `usuario_producto_logro` DISABLE KEYS */;
-REPLACE INTO `usuario_producto_logro` (`IdUsuarioProductoLogro`, `IdUsuario`, `IdProducto`, `CodigoLogro`, `FechaAlta`) VALUES (1,1,5,'001','2020-11-01 00:55:12'),(5,1,5,'002','2020-11-07 20:12:41');
+REPLACE INTO `usuario_producto_logro` (`IdUsuarioProductoLogro`, `IdUsuario`, `IdProducto`, `CodigoLogro`, `FechaAlta`) VALUES (1,1,5,'001','2020-11-01 00:55:12'),(7,1,5,'002','2020-11-12 23:19:51');
 /*!40000 ALTER TABLE `usuario_producto_logro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,7 +426,7 @@ CREATE TABLE `videojuego` (
   `Desarrolladora` varchar(100) NOT NULL,
   `RequerimientosMinimos` longtext,
   `RequerimientosRecomendados` longtext,
-  KEY `FK_videojuego_producto_idx` (`IdVideoJuego`),
+  PRIMARY KEY (`IdVideoJuego`),
   CONSTRAINT `FK_videojuego_producto` FOREIGN KEY (`IdVideoJuego`) REFERENCES `producto` (`IdProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -454,4 +454,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-10  0:49:57
+-- Dump completed on 2020-11-29 17:38:41
